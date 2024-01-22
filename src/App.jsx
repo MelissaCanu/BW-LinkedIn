@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import Profile from "./components/Profile";
 
 import Rete from "./component/Rete";
 
@@ -6,6 +7,7 @@ function App() {
   return (
     <div>
       <Rete />
+      <Profile />
     </div>
   );
 }
