@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Card, Container, Button, ProgressBar } from "react-bootstrap";
-import "../assets/profile.css";
+import "../assets/style/profile.css";
 import ProfilePic from "../profile.jpg";
 import ProfileBg from "../background.jpg";
 import Premium from "../premium.png";
 import { Pencil, EyeFill, PeopleFill, BarChartFill, Search } from "react-bootstrap-icons";
 import { fetchProfile } from "../redux/actions/profileAction";
+import FooterProfile from "./FooterProfile";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -211,6 +212,7 @@ const Profile = () => {
             </Card>
           </Col>
         </Row>
+        <FooterProfile />
       </Container>
     </>
   );

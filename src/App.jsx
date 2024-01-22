@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./components/Profile";
 
-import Rete from "./component/Rete";
+import Rete from "./components/Rete";
 
 function App() {
   return (
