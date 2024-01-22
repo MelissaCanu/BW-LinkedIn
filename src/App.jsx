@@ -1,7 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import FooterProfile from "./component/FooterProfile";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <FooterProfile />
+    </div>
+  );
 }
 
 export default App;
