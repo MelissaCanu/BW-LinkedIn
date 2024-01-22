@@ -1,9 +1,9 @@
-import { Row, Col, Card, Container, Button } from "react-bootstrap";
+import { Row, Col, Card, Container, Button, ProgressBar } from "react-bootstrap";
 import "../assets/profile.css";
 import ProfilePic from "../profile.jpg";
 import ProfileBg from "../background.jpg";
 import Premium from "../premium.png";
-import { Pencil } from "react-bootstrap-icons";
+import { Pencil, EyeFill, PeopleFill, BarChartFill, Search } from "react-bootstrap-icons";
 
 const Profile = () => {
   return (
@@ -30,7 +30,7 @@ const Profile = () => {
                   67 collegamenti
                 </a>
               </Card.Body>
-              <Card.Body className="mb-2">
+              <Card.Body className="mb-2 pt-0">
                 <Card.Link className="text-primary custom-link" href="#">
                   <Button className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-1">Disponibile per</Button>
                 </Card.Link>
@@ -100,6 +100,106 @@ const Profile = () => {
           </Col>
         </Row>
         {/* ROW SECONDA SEZIONE */}
+        <Row>
+          <Col md={8}>
+            <Card className="pb-2" style={{ marginTop: "-7px" }}>
+              <Card.Body>
+                <Card.Title className="mb-1">Consigliato per te</Card.Title>
+                <Card.Text className="lead" style={{ fontSize: "16px" }}>
+                  <EyeFill className="text-secondary me-2" /> Solo per te
+                </Card.Text>
+                <h6>Intermedio</h6>
+                <ProgressBar now={80} variant="secondary" style={{ height: "8px" }} />
+                <Card.Text className="mt-2 fs-6">
+                  Completa 1 passaggio per raggiungere il livello{" "}
+                  <a className="text-primary fw-bold text-decoration-none custom-link" href="#">
+                    Massimo
+                  </a>
+                </Card.Text>
+                <div className="border border-1 rounded-3 bg-light">
+                  <Card.Title className="m-3 mb-2">
+                    Scrivi un riepilogo per mettere in evidenza la tua personalità o la tua esperienza lavorativa
+                  </Card.Title>
+                  <Card.Text className="m-3 mt-2 mb-2" style={{ fontSize: "14px" }}>
+                    Gli utenti che includono un riepilogo ricevono fino a 3,9 volte più visualizzazioni del profilo.
+                  </Card.Text>
+                  <Card.Link href="#">
+                    <Button
+                      variant="outline-secondary"
+                      className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-3 m-3 mt-2"
+                    >
+                      Aggiungi un riepilogo
+                    </Button>
+                  </Card.Link>
+                </div>
+              </Card.Body>
+            </Card>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <Card.Title className="mb-1">Analisi</Card.Title>
+                  <Card.Text className="lead" style={{ fontSize: "16px" }}>
+                    <EyeFill className="text-secondary me-2" /> Solo per te
+                  </Card.Text>
+                  <Row>
+                    <Col xs={12} md={4} className="px-5">
+                      <Card.Title className="mb-1 fs-6">
+                        <PeopleFill className="me-2" />
+                        45 visualizzazioni del profilo
+                      </Card.Title>
+                      <Card.Text className="mb-1 fs-6"> Scopri chi ha visitato il tuo profilo.</Card.Text>
+                    </Col>
+                    <Col xs={12} md={4} className="px-5">
+                      <Card.Title className="mb-1 fs-6">
+                        <BarChartFill className="me-2" />
+                        253 impressioni del post
+                      </Card.Title>
+                      <Card.Text className="mb-1 fs-6">Scopri chi sta interagendo con i tuoi post.</Card.Text>
+                    </Col>
+                    <Col xs={12} md={4} className="px-5">
+                      <Card.Title className="mb-1 fs-6">
+                        <Search className="me-2" />4 comparse nei motori di ricerca
+                      </Card.Title>
+                      <Card.Text className="mb-1 fs-6">Vedi quante volte compari nei risultati di ricerca.</Card.Text>
+                    </Col>
+                  </Row>
+                  <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons ">
+                    Mostra tutte le analisi →
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Col>
+
+          <Col md={4}>
+            <Card className="pb-2 mt-2">
+              <Card.Body>
+                <Card.Title className="fs-6 mb-3">Altri profili consultati</Card.Title>
+                <div className="d-flex">
+                  <div>
+                    <img src={ProfilePic} alt="profile-pic" className="rounded-5" style={{ width: "60px" }} />
+                  </div>
+
+                  <div className="ms-2">
+                    <Card.Title className="fs-6 mt-1 mb-1">Nome e Cognome</Card.Title>
+                    <Card.Text>Fa qualcosa sicuramente nella vita scritto qua</Card.Text>
+                  </div>
+                </div>
+                <Card.Link href="#">
+                  <div class="text-center mt-3">
+                    <Button
+                      variant="outline-secondary"
+                      className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-3"
+                    >
+                      Visualizza Profilo
+                    </Button>
+                  </div>
+                </Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
     </>
   );

@@ -39,3 +39,8 @@ body {
   border-color: #6c757d;
   color: #6c757d;
 }
+
+.custom-buttons:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+}
