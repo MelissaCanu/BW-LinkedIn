@@ -2,7 +2,7 @@ import { FETCH_NETWORK_REQUEST, FETCH_NETWORK_SUCCESS, FETCH_NETWORK_FAILURE } f
 
 const initialState = {
   loading: false,
-  network: {},
+  network: [],
   error: "",
 };
 
@@ -13,7 +13,7 @@ const networkReducer = (state = initialState, action) => {
     case FETCH_NETWORK_SUCCESS:
       return { ...state, loading: false, network: action.payload, error: "" };
     case FETCH_NETWORK_FAILURE:
-      return { ...state, loading: false, network: {}, error: action.payload };
+      return { ...state, loading: false, network: [], error: action.payload };
     default:
       return state;
   }
