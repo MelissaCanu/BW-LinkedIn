@@ -28,7 +28,7 @@ const ReteAmici = () => {
                     width: "80px",
                     height: "80px",
                     bottom: "-40px",
-                    left: "20%",
+                    left: "50%",
                     marginLeft: "-40px",
                   }}
                   className="shadow"
@@ -77,7 +77,7 @@ const ReteAmici = () => {
                     width: "80px",
                     height: "80px",
                     bottom: "-40px",
-                    left: "20%",
+                    left: "50%",
                     marginLeft: "-40px",
                   }}
                   className="shadow"
