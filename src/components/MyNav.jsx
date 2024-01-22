@@ -34,6 +34,8 @@ function MyNav() {
             </Nav.Link>
           </div>
 
+          <img src="" alt="" />
+
           <Nav.Link href="#action1" className="d-flex flex-column align-items-center ms-5">
             <span>
               <IoHomeSharp className="fs-4" />

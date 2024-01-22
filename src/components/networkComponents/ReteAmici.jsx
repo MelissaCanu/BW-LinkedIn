@@ -1,8 +1,8 @@
 import { Row, Image, Card, Col, Button } from "react-bootstrap";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNetwork } from "../redux/actions/networkAction";
-import { addFriendAction, deleteFriendAction } from "../redux/actions/friendListAction";
+import { fetchNetwork } from "../../redux/actions/networkAction";
+import { addFriendAction, deleteFriendAction } from "../../redux/actions/friendListAction";
 // import { useNavigate } from "react-router-dom";
 const ReteAmici = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ReteAmici = () => {
     <>
       <h3 className="mt-3">Persone che segui</h3>
       <div className="border border-1 rounded-4 shadow p-3 mt-3 bg-light">
-        <Row className="row-cols-3 row-cols-md-4 gy-3">
+        <Row className="row-cols-2 row-cols-lg-3  row-cols-xl-4 gy-3">
           {list.map((elem) => (
             <Col key={elem._id}>
               <Card>
@@ -77,7 +77,7 @@ const ReteAmici = () => {
       </div>
       <h3 className="mt-3">Persone che potresti conoscere, calde e vicino a te</h3>
       <div className="border border-1 rounded-4 shadow p-3 mt-3 bg-light">
-        <Row className="row-cols-3 row-cols-md-4 gy-3">
+        <Row className="row-cols-2 row-cols-lg-3  row-cols-xl-4 gy-3">
           {network.map(
             (elem, i) =>
               i < 20 &&

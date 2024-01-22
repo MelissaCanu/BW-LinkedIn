@@ -1,6 +1,6 @@
 import { Accordion, Card, Container } from "react-bootstrap";
 import { Calendar3, CardList, Hash, PeopleFill, PersonFill, Postcard } from "react-bootstrap-icons";
-import SidebarFooter from "./SidebarFooter";
+import SidebarFooter from "../SidebarFooter";
 
 const SidebarRete = () => {
   return (

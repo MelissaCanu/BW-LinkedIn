@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Container, Button, ProgressBar } from "react-bootstrap";
-import "../assets/style/profile.css";
-import ProfilePic from "../profile.jpg";
-import ProfileBg from "../background.jpg";
-import Premium from "../premium.png";
-import { Pencil, EyeFill, PeopleFill, BarChartFill, Search } from "react-bootstrap-icons";
-import { fetchProfile } from "../redux/actions/profileAction";
-import { fetchNetwork } from "../redux/actions/networkAction";
-import FooterProfile from "./FooterProfile";
+import { Row, Col, Card, Container, Button, ProgressBar, Badge } from "react-bootstrap";
+import "../../assets/style/profile.css";
+import ProfileBg from "../../background.jpg";
+import Premium from "../../premium.png";
+import {
+  Pencil,
+  EyeFill,
+  PeopleFill,
+  BarChartFill,
+  Search,
+  Broadcast,
+  PersonFillAdd,
+  PencilFill,
+  PlusLg,
+} from "react-bootstrap-icons";
+import { fetchProfile } from "../../redux/actions/profileAction";
+import { fetchNetwork } from "../../redux/actions/networkAction";
+import FooterProfile from "../FooterProfile";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -32,7 +41,8 @@ const Profile = () => {
   console.log("Dati del Profilo:", profile);
   console.log("Dati Rete:", network);
   const { name, surname, email, username, area, title, image } = profile;
-  const displayedNetwork = Array.isArray(network) ? getRandomElements(network, 5) : []; //controllo se e' array perche' da subito errore altrimenti
+  const displayedNetwork = getRandomElements(network, 5);
+  const displayedNetwork2 = getRandomElements(network, 5);
   return (
     <>
       <Container className="mt-4">
@@ -71,7 +81,7 @@ const Profile = () => {
                 <Card.Link href="#">
                   <Button
                     variant="outline-secondary"
-                    className="rounded-5 px-3 py-1 border-2 fw-bolder custom-button-3"
+                    className="rounded-5 px-3 py-1 border-2 fw-bolder custom-button-3 mt-2 mt-lg-0"
                   >
                     Altro
                   </Button>
@@ -80,7 +90,7 @@ const Profile = () => {
             </Card>
           </Col>
           <Col md={4}>
-            <Card>
+            <Card className="mt-2 mt-md-0">
               <Card.Body>
                 <div className="d-flex justify-content-between">
                   <Card.Title className="mb-0">Lingua del profilo</Card.Title>
@@ -128,7 +138,7 @@ const Profile = () => {
         {/* ROW SECONDA SEZIONE */}
         <Row>
           <Col md={8}>
-            <Card className="pb-2" style={{ marginTop: "-7px" }}>
+            <Card className="pb-2 mt-2 mt-md-0 mt-xl-2" style={{ marginTop: "-7px" }}>
               <Card.Body>
                 <Card.Title className="mb-1">Consigliato per te</Card.Title>
                 <Card.Text className="lead" style={{ fontSize: "16px" }}>
@@ -196,13 +206,204 @@ const Profile = () => {
                 </Card.Text>
               </Card>
             </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <Card.Title className="mb-1">Risorse</Card.Title>
+                  <Card.Text className="lead" style={{ fontSize: "16px" }}>
+                    <EyeFill className="text-secondary me-2" /> Solo per te
+                  </Card.Text>
+                  <Card.Title className="mb-0 fs-6">
+                    <Broadcast /> Modalità creazione di contenuti{" "}
+                    <Badge bg="light" className="mb-1 text-secondary">
+                      No
+                    </Badge>
+                  </Card.Title>
+                  <Card.Text style={{ fontSize: "14px", marginInlineStart: "21px" }} className="pe-5">
+                    Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione
+                  </Card.Text>
+                  <Card.Title className="mb-0 fs-6 border-top pt-3">
+                    <PeopleFill /> La mia rete
+                  </Card.Title>
+                  <Card.Text style={{ fontSize: "14px", marginInlineStart: "21px" }} className="pe-5 pb-4">
+                    Salva e gestisci i tuoi collegamenti e interessi.
+                  </Card.Text>
+                </Card.Body>
+                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
+                  Mostra tutte le risorse (5) →
+                </Card.Text>
+              </Card>
+            </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title className="mb-0">
+                      Attivitá <Card.Text className="text-primary mt-0 fs-6"> 67 follower </Card.Text>
+                    </Card.Title>
+                    <Card.Link href="#">
+                      <Button variant="outline-primary" className="rounded-5 px-3 border-2 fw-bolder custom-button-2">
+                        Crea un post
+                      </Button>
+                      <PencilFill className="text-secondary ms-4 fs-4" />
+                    </Card.Link>
+                  </div>
+
+                  <div className="mt-2">
+                    <Button variant="success" className="rounded-5 px-3 border-1 fw-bolder py-1 me-2">
+                      Post
+                    </Button>
+                    <Button
+                      variant="outline-secondary"
+                      className="rounded-5 px-3 border-1 fw-bolder custom-button-3 py-1 me-2"
+                    >
+                      Commenti
+                    </Button>
+                    <Button
+                      variant="outline-secondary"
+                      className="rounded-5 px-3 border-1 fw-bolder custom-button-3 py-1"
+                    >
+                      Immagini
+                    </Button>
+                  </div>
+
+                  <Card.Text className="lead mt-4 mb-2" style={{ fontSize: "13px" }}>
+                    <b>
+                      {name} {surname}
+                    </b>{" "}
+                    ha pubblicato questo post ·
+                  </Card.Text>
+                </Card.Body>
+                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
+                  Mostra tutti i post →
+                </Card.Text>
+              </Card>
+            </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title className="mb-4">Formazione</Card.Title>
+                    <Card.Link href="#">
+                      <PlusLg className="text-secondary fs-3" />
+                      <PencilFill className="text-secondary ms-4 fs-4" />
+                    </Card.Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title className="mb-4">Competenze</Card.Title>
+                    <Card.Link href="#">
+                      <PlusLg className="text-secondary fs-3" />
+                      <PencilFill className="text-secondary ms-4 fs-4" />
+                    </Card.Link>
+                  </div>
+                </Card.Body>
+                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
+                  Mostra tutte le competenze →
+                </Card.Text>
+              </Card>
+            </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <div className="d-flex justify-content-between">
+                    <Card.Title className="mb-4">Competenze</Card.Title>
+                    <Card.Link href="#">
+                      <PlusLg className="text-secondary fs-3" />
+                      <PencilFill className="text-secondary ms-4 fs-4" />
+                    </Card.Link>
+                  </div>
+                </Card.Body>
+                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
+                  Mostra tutte le competenze →
+                </Card.Text>
+              </Card>
+            </Col>
+
+            <Col xs={12}>
+              <Card className=" mt-2">
+                <Card.Body className="pb-0">
+                  <Card.Title className="mb-3">Interessi</Card.Title>
+
+                  <Button
+                    className="rounded-0 border-2 border-start-0 border-end-0 border-top-0 border-success text-success"
+                    variant="outline-light"
+                  >
+                    Aziende
+                  </Button>
+                  <Button
+                    className="rounded-0 border-2 border-start-0 border-end-0 border-top-0 border-success text-success"
+                    variant="outline-light"
+                  >
+                    Scuole o universitá
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
           </Col>
 
           <Col md={4}>
+            <Col>
+              <Card className="pb-0 mt-2">
+                <Card.Body>
+                  <Card.Title className="fs-6 mb-3">Altri profili consultati</Card.Title>
+                  {displayedNetwork.map((suggested, index) => (
+                    <React.Fragment key={index}>
+                      <div className="d-flex">
+                        <div>
+                          <img
+                            src={suggested.image}
+                            alt="profile-pic"
+                            className="rounded-5"
+                            style={{ width: "60px", height: "60px" }}
+                          />
+                        </div>
+
+                        <div className="ms-2">
+                          <Card.Title className="fs-6 mt-1 mb-1">
+                            {suggested.name} {suggested.surname}
+                          </Card.Title>
+                          <Card.Text>{suggested.title}</Card.Text>
+                        </div>
+                      </div>
+                      <Card.Link href="#">
+                        <div
+                          className={`text-center mb-3 mt-3 ${
+                            index !== displayedNetwork.length - 1 ? " pb-4 border-bottom" : "" // condizione se e' l'ultimo elemento non mette margin bottom
+                          }`}
+                        >
+                          <Button
+                            variant="outline-secondary"
+                            className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-3 "
+                          >
+                            Visualizza Profilo
+                          </Button>
+                        </div>
+                      </Card.Link>
+                    </React.Fragment>
+                  ))}
+                </Card.Body>
+                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons ">
+                  Mostra tutto
+                </Card.Text>
+              </Card>
+            </Col>
+
             <Card className="pb-0 mt-2">
               <Card.Body>
-                <Card.Title className="fs-6 mb-3">Altri profili consultati</Card.Title>
-                {displayedNetwork.map((suggested, index) => (
+                <Card.Title className="fs-6 mb-0">Persone che potresti conoscere</Card.Title>
+                <Card.Text className="mb-3 mt-0 lead fs-6">Dal tuo settore</Card.Text>
+                {displayedNetwork2.map((suggested, index) => (
                   <React.Fragment key={index}>
                     <div className="d-flex">
                       <div>
@@ -231,7 +432,7 @@ const Profile = () => {
                           variant="outline-secondary"
                           className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-3 "
                         >
-                          Visualizza Profilo
+                          <PersonFillAdd className="mb-1" /> Collegati
                         </Button>
                       </div>
                     </Card.Link>
