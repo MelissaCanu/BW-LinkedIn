@@ -35,7 +35,7 @@ const SidebarFooter = () => {
       <div>
         <p>
           <img src={logo} height="20" alt="linkedin" />
-          <span>Linkedin Corporation ©2024</span>
+          <span> Linkedin Corporation ©2024</span>
         </p>
       </div>
     </div>
