@@ -6,8 +6,8 @@ import { addFriendAction, deleteFriendAction } from "../redux/actions/friendList
 // import { useNavigate } from "react-router-dom";
 const ReteAmici = () => {
   const dispatch = useDispatch();
-  const network = useSelector((state) => state.network) || [];
-  const amici = useSelector((state) => state.list) || [];
+  const { network = [] } = useSelector((state) => state.network);
+  const { list = [] } = useSelector((state) => state.friendList);
   // const navigate = useNavigate();
   const removeUsercard = (e) => {
     e.target.closest(".col").style.display = "none";
@@ -16,13 +16,13 @@ const ReteAmici = () => {
     dispatch(fetchNetwork());
   }, [dispatch]);
   console.log("Profili:", network);
-  console.log("Amici:", amici);
+  console.log("Amici:", list);
   return (
     <>
       <h3 className="mt-3">Persone che segui</h3>
       <div className="border border-1 rounded-4 shadow p-3 mt-3 bg-light">
         <Row className="row-cols-3 row-cols-md-4 gy-3">
-          {amici.map((elem) => (
+          {list.map((elem) => (
             <Col key={elem._id}>
               <Card>
                 <div style={{ position: "relative" }}>
@@ -75,13 +75,13 @@ const ReteAmici = () => {
           ))}
         </Row>
       </div>
-      <h3>Persone che potresti conosce, calde e vicino a te</h3>
+      <h3 className="mt-3">Persone che potresti conoscere, calde e vicino a te</h3>
       <div className="border border-1 rounded-4 shadow p-3 mt-3 bg-light">
         <Row className="row-cols-3 row-cols-md-4 gy-3">
           {network.map(
             (elem, i) =>
               i < 20 &&
-              amici.findIndex((x) => x._id === elem._id) === -1 && (
+              list.findIndex((x) => x._id === elem._id) === -1 && (
                 <Col key={elem._id}>
                   <Card>
                     <div style={{ position: "relative" }}>
