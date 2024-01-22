@@ -1,12 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Profile from "./components/Profile";
-import Rete from "./components/Rete";
-import MyNav from "./components/MyNav";
+import Profile from "./components/profileComponents/Profile";
+import Rete from "./components/networkComponents/Rete";
 
 function App() {
   return (
     <div>
-      <MyNav />
       <Rete />
       <Profile />
     </div>
