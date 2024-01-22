@@ -107,11 +107,12 @@ const Footer = () => {
           <Row>
             <Col>
               <Form.Select size="sm" className="Footer-option-lato">
-                <Form.Label>Seleziona lingua</Form.Label>
-                <option>Italiano</option>
-                <option>Inglese</option>
-                <option>Turco</option>
-                <option>Napoletano</option>
+                <Form.Label>
+                  <option>Seleziona lingua</option>
+                  <option>Inglese</option>
+                  <option>Turco</option>
+                  <option>Napoletano</option>
+                </Form.Label>
               </Form.Select>
             </Col>
           </Row>
