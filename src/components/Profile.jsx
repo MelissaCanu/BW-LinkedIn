@@ -1,11 +1,22 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Card, Container, Button, ProgressBar } from "react-bootstrap";
 import "../assets/profile.css";
 import ProfilePic from "../profile.jpg";
 import ProfileBg from "../background.jpg";
 import Premium from "../premium.png";
 import { Pencil, EyeFill, PeopleFill, BarChartFill, Search } from "react-bootstrap-icons";
+import { fetchProfile } from "../redux/actions/profileAction";
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const { loading, profile, error } = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
+  console.log("Dati del Profilo:", profile);
   return (
     <>
       <Container className="mt-4">
@@ -85,7 +96,7 @@ const Profile = () => {
                   </div>
                   <Card.Text className="text-center lead mt-4 fs-6">Get a boost with this exclusive offer.</Card.Text>
                   <Card.Link href="#">
-                    <div class="text-center">
+                    <div className="text-center">
                       <Button
                         variant="outline-primary"
                         className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-2"
@@ -187,7 +198,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <Card.Link href="#">
-                  <div class="text-center mt-3">
+                  <div className="text-center mt-3">
                     <Button
                       variant="outline-secondary"
                       className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-3"
