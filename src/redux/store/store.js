@@ -3,11 +3,15 @@ import { thunk } from "redux-thunk";
 import profileReducer from "../reducers/profileReducer";
 import networkReducer from "../reducers/networkReducer";
 import friendListReducer from "../reducers/friendListReducer";
+import postReducers from "../reducers/postReducer";
+import currentUserReducer from "../reducers/currentUserReducer";
 
 const rootReducer = combineReducers({
+  currentUser: currentUserReducer,
   profile: profileReducer,
   network: networkReducer,
   friendList: friendListReducer,
+  post: postReducers,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
