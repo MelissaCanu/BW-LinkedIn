@@ -1,26 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
+import { Row, Col, Card, Container, Button } from "react-bootstrap";
 import "../../assets/style/profile.css";
 import ProfileBg from "../../background.jpg";
 import Premium from "../../premium.png";
-import {
-  Pencil,
-  EyeFill,
-  PeopleFill,
-  BarChartFill,
-  Search,
-  Broadcast,
-  PersonFillAdd,
-  PencilFill,
-  PlusLg,
-} from "react-bootstrap-icons";
+import { Pencil, PersonFillAdd, PencilFill, PlusLg } from "react-bootstrap-icons";
 import { fetchProfile } from "../../redux/actions/profileAction";
 import { fetchNetwork } from "../../redux/actions/networkAction";
 import FooterProfile from "../FooterProfile";
 import SuggestedComponent from "./SuggestedComponent";
 import AnalysesComponent from "./AnalysesComponent";
 import ResourceComponent from "./ResourceComponent";
+import ExperienceComponent from "./ExperienceComponent";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -43,7 +34,7 @@ const Profile = () => {
 
   console.log("Dati del Profilo:", profile);
   console.log("Dati Rete:", network);
-  const { name, surname, email, username, area, title, image } = profile;
+  const { name, surname, email, username, area, title, image, _id } = profile;
   const displayedNetwork = getRandomElements(network, 5);
   const displayedNetwork2 = getRandomElements(network, 5);
   return (
@@ -191,19 +182,12 @@ const Profile = () => {
               </Card>
             </Col>
 
-            <Col xs={12}>
-              <Card className=" mt-2">
-                <Card.Body className="pb-0">
-                  <div className="d-flex justify-content-between">
-                    <Card.Title className="mb-4">Formazione</Card.Title>
-                    <Card.Link href="#">
-                      <PlusLg className="text-secondary fs-3" />
-                      <PencilFill className="text-secondary ms-4 fs-4" />
-                    </Card.Link>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
+            <ExperienceComponent
+              userId={_id}
+              token={
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlNzY2YzYwMGJlMTAwMTgzYTg2YzciLCJpYXQiOjE3MDU5MzIzOTYsImV4cCI6MTcwNzE0MTk5Nn0._lXDAp9GrSaRCbC4PwGaSAxnfN79__pJeNpk4ERaOD0"
+              }
+            />
 
             <Col xs={12}>
               <Card className=" mt-2">
