@@ -43,8 +43,8 @@ const Profile = () => {
     );
   }
 
-  console.log("Dati del Profilo:", profile);
-  console.log("Dati Rete:", network);
+  console.log("Aggiornamento Profilo:", profile);
+  console.log("Aggiornamento Rete:", network);
   const { name, surname, email, username, area, title, image, _id } = profile;
   const displayedNetwork = getRandomElements(network, 5);
   const displayedNetwork2 = getRandomElements(network, 5);

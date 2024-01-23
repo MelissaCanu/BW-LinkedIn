@@ -13,6 +13,7 @@ const ExperienceComponent = ({ userId, token }) => {
   const dispatch = useDispatch();
   const { experiences } = useSelector((state) => state.experience);
   const [showModal, setShowModal] = useState(false);
+
   const [currentExperience, setCurrentExperience] = useState({
     role: "",
     company: "",
@@ -31,10 +32,16 @@ const ExperienceComponent = ({ userId, token }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, token]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddOrUpdateExperience();
+  };
+
   const handleAddOrUpdateExperience = () => {
     const action = currentExperience._id
       ? updateExperience(userId, token, currentExperience._id, currentExperience)
       : addExperience(userId, token, currentExperience);
+    console.log("Fetch exp", experiences);
 
     dispatch(action)
       .then(() => {
@@ -66,7 +73,7 @@ const ExperienceComponent = ({ userId, token }) => {
     return isoDate ? isoDate.split("T")[0] : "";
   };
 
-  console.log("Esperienze:", experiences);
+  console.log("Aggiornamento Esperienze:", experiences);
   return (
     <Col xs={12}>
       <Card className="mt-2">
@@ -132,7 +139,7 @@ const ExperienceComponent = ({ userId, token }) => {
           <Modal.Title>{currentExperience._id ? "Modifica Esperienza" : "Aggiungi Esperienza"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Ruolo</Form.Label>
               <Form.Control
@@ -169,7 +176,7 @@ const ExperienceComponent = ({ userId, token }) => {
                 type="text"
                 name="area"
                 value={currentExperience.area}
-                onChange={handleInputChange}
+                onSubmit={handleInputChange}
                 required
               />
 

@@ -33,6 +33,7 @@ export const addExperience = (userId, token, experienceData) => {
       })
       .then((response) => {
         dispatch({ type: ADD_EXPERIENCE, payload: response.data });
+        console.log("Dati ricevuti da Esperienze:", response.data);
       })
       .catch((error) => {
         dispatch({ type: FETCH_EXPERIENCES_FAILURE, payload: error.message });

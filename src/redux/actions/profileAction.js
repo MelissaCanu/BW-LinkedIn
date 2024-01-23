@@ -32,6 +32,7 @@ export const fetchProfile = () => {
       .then((response) => {
         const profile = response.data;
         dispatch(fetchProfileSuccess(profile));
+        console.log("Dati ricevuti da Profile:", response.data);
       })
       .catch((error) => {
         dispatch(fetchProfileFailure(error.message));
