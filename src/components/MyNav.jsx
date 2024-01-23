@@ -7,8 +7,8 @@ import { TiMessageTyping } from "react-icons/ti";
 import { MdAccountCircle } from "react-icons/md";
 import { BiSolidGrid } from "react-icons/bi";
 import "../assets/style/navbar.css";
-import { useState } from "react";
 import { GoTriangleDown } from "react-icons/go";
+import { useState } from "react";
 
 function MyNav() {
   const [show, setShow] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Container, Button, ProgressBar, Badge } from "react-bootstrap";
+import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
 import "../../assets/style/profile.css";
 import ProfileBg from "../../background.jpg";
 import Premium from "../../premium.png";
@@ -18,6 +18,9 @@ import {
 import { fetchProfile } from "../../redux/actions/profileAction";
 import { fetchNetwork } from "../../redux/actions/networkAction";
 import FooterProfile from "../FooterProfile";
+import SuggestedComponent from "./SuggestedComponent";
+import AnalysesComponent from "./AnalysesComponent";
+import ResourceComponent from "./ResourceComponent";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -138,103 +141,9 @@ const Profile = () => {
         {/* ROW SECONDA SEZIONE */}
         <Row>
           <Col md={8}>
-            <Card className="pb-2 mt-2 mt-md-0 mt-xl-2" style={{ marginTop: "-7px" }}>
-              <Card.Body>
-                <Card.Title className="mb-1">Consigliato per te</Card.Title>
-                <Card.Text className="lead" style={{ fontSize: "16px" }}>
-                  <EyeFill className="text-secondary me-2" /> Solo per te
-                </Card.Text>
-                <h6>Intermedio</h6>
-                <ProgressBar now={80} variant="secondary" style={{ height: "8px" }} />
-                <Card.Text className="mt-2 fs-6">
-                  Completa 1 passaggio per raggiungere il livello{" "}
-                  <a className="text-primary fw-bold text-decoration-none custom-link" href="#">
-                    Massimo
-                  </a>
-                </Card.Text>
-                <div className="border border-1 rounded-3 bg-light">
-                  <Card.Title className="m-3 mb-2">
-                    Scrivi un riepilogo per mettere in evidenza la tua personalità o la tua esperienza lavorativa
-                  </Card.Title>
-                  <Card.Text className="m-3 mt-2 mb-2" style={{ fontSize: "14px" }}>
-                    Gli utenti che includono un riepilogo ricevono fino a 3,9 volte più visualizzazioni del profilo.
-                  </Card.Text>
-                  <Card.Link href="#">
-                    <Button
-                      variant="outline-secondary"
-                      className="rounded-5 px-3 border-2 py-1 fw-bolder custom-button-3 m-3 mt-2"
-                    >
-                      Aggiungi un riepilogo
-                    </Button>
-                  </Card.Link>
-                </div>
-              </Card.Body>
-            </Card>
-
-            <Col xs={12}>
-              <Card className=" mt-2">
-                <Card.Body className="pb-0">
-                  <Card.Title className="mb-1">Analisi</Card.Title>
-                  <Card.Text className="lead" style={{ fontSize: "16px" }}>
-                    <EyeFill className="text-secondary me-2" /> Solo per te
-                  </Card.Text>
-                  <Row className="mb-2">
-                    <Col xs={12} md={4} className="px-5">
-                      <Card.Title className="mb-1 fs-6">
-                        <PeopleFill className="me-2" />
-                        45 visualizzazioni del profilo
-                      </Card.Title>
-                      <Card.Text className="mb-1 fs-6"> Scopri chi ha visitato il tuo profilo.</Card.Text>
-                    </Col>
-                    <Col xs={12} md={4} className="px-5">
-                      <Card.Title className="mb-1 fs-6">
-                        <BarChartFill className="me-2" />
-                        253 impressioni del post
-                      </Card.Title>
-                      <Card.Text className="mb-1 fs-6">Scopri chi sta interagendo con i tuoi post.</Card.Text>
-                    </Col>
-                    <Col xs={12} md={4} className="px-5">
-                      <Card.Title className="mb-1 fs-6">
-                        <Search className="me-2" />4 comparse nei motori di ricerca
-                      </Card.Title>
-                      <Card.Text className="mb-1 fs-6">Vedi quante volte compari nei risultati di ricerca.</Card.Text>
-                    </Col>
-                  </Row>
-                </Card.Body>
-                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons ">
-                  Mostra tutte le analisi →
-                </Card.Text>
-              </Card>
-            </Col>
-
-            <Col xs={12}>
-              <Card className=" mt-2">
-                <Card.Body className="pb-0">
-                  <Card.Title className="mb-1">Risorse</Card.Title>
-                  <Card.Text className="lead" style={{ fontSize: "16px" }}>
-                    <EyeFill className="text-secondary me-2" /> Solo per te
-                  </Card.Text>
-                  <Card.Title className="mb-0 fs-6">
-                    <Broadcast /> Modalità creazione di contenuti{" "}
-                    <Badge bg="light" className="mb-1 text-secondary">
-                      No
-                    </Badge>
-                  </Card.Title>
-                  <Card.Text style={{ fontSize: "14px", marginInlineStart: "21px" }} className="pe-5">
-                    Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione
-                  </Card.Text>
-                  <Card.Title className="mb-0 fs-6 border-top pt-3">
-                    <PeopleFill /> La mia rete
-                  </Card.Title>
-                  <Card.Text style={{ fontSize: "14px", marginInlineStart: "21px" }} className="pe-5 pb-4">
-                    Salva e gestisci i tuoi collegamenti e interessi.
-                  </Card.Text>
-                </Card.Body>
-                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
-                  Mostra tutte le risorse (5) →
-                </Card.Text>
-              </Card>
-            </Col>
+            <SuggestedComponent />
+            <AnalysesComponent />
+            <ResourceComponent />
 
             <Col xs={12}>
               <Card className=" mt-2">
@@ -293,23 +202,6 @@ const Profile = () => {
                     </Card.Link>
                   </div>
                 </Card.Body>
-              </Card>
-            </Col>
-
-            <Col xs={12}>
-              <Card className=" mt-2">
-                <Card.Body className="pb-0">
-                  <div className="d-flex justify-content-between">
-                    <Card.Title className="mb-4">Competenze</Card.Title>
-                    <Card.Link href="#">
-                      <PlusLg className="text-secondary fs-3" />
-                      <PencilFill className="text-secondary ms-4 fs-4" />
-                    </Card.Link>
-                  </div>
-                </Card.Body>
-                <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
-                  Mostra tutte le competenze →
-                </Card.Text>
               </Card>
             </Col>
 
