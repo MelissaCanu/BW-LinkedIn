@@ -16,7 +16,6 @@ import { GiTwirlCenter } from "react-icons/gi";
 import { FaSafari } from "react-icons/fa";
 import { TiGroup } from "react-icons/ti";
 import { TiTick } from "react-icons/ti";
-import { Link } from "react-router-dom";
 
 function MyNav() {
   const [show, setShow] = useState(false);
@@ -25,62 +24,57 @@ function MyNav() {
   const handleShow = () => setShow(true);
 
   return (
-    <Navbar sticky="top" className="bg-white shadow-sm nopadding">
-      <Container>
-        <Nav className="my-2 my-lg-0 p-0" navbarScroll>
-          <div className="d-flex align-items-center me-auto">
-            <Nav.Link className="p-0">
-              <FaLinkedin className="linkedin-icon fs-1" />
-            </Nav.Link>
-            <Nav.Link className="d-flex flex-column align-items-center px-1">
-              <Form className="search d-flex align-items-center rounded">
-                <IoSearchSharp className="fs-5 ms-2" />
-                <Form.Control
-                  type="search"
-                  placeholder="Cerca"
-                  className="bg-transparent d-none d-xl-flex border-0 me-2"
-                  aria-label="Search"
-                />
-              </Form>
-            </Nav.Link>
-          </div>
+    <Navbar sticky="top" className="bg-white d-flex shadow-sm nopadding">
+      <Container className="">
+        <Nav className="d-flex my-2 my-lg-0 p-0" variant="underline" navbarScroll>
+          <FaLinkedin className="linkedin-icon fs-1 m-auto" />
 
-          <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1 ms-auto">
+          <Form className="search d-flex align-items-center rounded m-auto">
+            <IoSearchSharp className="fs-5 ms-2" />
+            <Form.Control
+              type="search"
+              placeholder="Cerca"
+              className="bg-transparent d-none d-xl-flex border-0 me-2"
+              aria-label="Search"
+            />
+          </Form>
+
+          <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1">
             <span>
               <IoHomeSharp className="fs-4" />
             </span>
-            <span className="d-none d-md-flex">Home</span>
+            <span className="d-none d-md-flex nav-tab">Home</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action2" className="d-flex flex-column align-items-center py-1">
             <span>
               <FaUserGroup className="fs-4" />
             </span>
-            <span className="d-none d-md-flex">Rete</span>
+            <span className="d-none d-md-flex nav-tab">Rete</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action3" className="d-flex flex-column align-items-center py-1">
             <span>
               <MdWork className="fs-4" />
             </span>
-            <span className="d-none d-md-flex">Lavoro</span>
+            <span className="d-none d-md-flex nav-tab">Lavoro</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action4" className="d-flex flex-column align-items-center py-1">
             <span>
               <TiMessageTyping className="fs-4" />
             </span>
-            <span className="d-none d-md-flex">Messaggistica</span>
+            <span className="d-none d-md-flex nav-tab">Messaggistica</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action5" className="d-flex flex-column align-items-center py-1">
             <span>
               <IoNotifications className="fs-4" />
             </span>
-            <span className="d-none d-md-flex">Notifiche</span>
+            <span className="d-none d-md-flex nav-tab">Notifiche</span>
           </Nav.Link>
 
-          <Nav.Link to="/*" className="d-flex flex-column align-items-center py-1">
-            <Dropdown className="d-flex flex-column justify-content-center">
-              <Dropdown.Toggle className="custom-color py-0" variant="transparent" id="dropdown-basic">
+          <Nav.Link to="/*" className=" py-1 m-auto">
+            <Dropdown>
+              <Dropdown.Toggle className="custom-color border-0 py-0" variant="transparent" id="dropdown-basic">
                 <MdAccountCircle className="d-flex fs-4" />
-                <span className="d-none d-md-inline-flex">Tu</span>
+                <span className="d-none d-md-inline-flex nav-tab">Tu</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -89,7 +83,7 @@ function MyNav() {
                   Epicode
                 </Dropdown.Item>
                 <div className="text-center">
-                  <Button variant="outline-primary" className="rounded-5">
+                  <Button variant="outline-primary" className="rounded-5 py-0 px-5">
                     Visualizza Profilo
                   </Button>
                 </div>
@@ -116,11 +110,10 @@ function MyNav() {
             </Dropdown>
           </Nav.Link>
 
-          <div className="border-start"></div>
-          <Nav.Link href="#" className="d-flex flex-column align-items-center py-1">
+          <Nav.Link href="#" className="d-flex flex-column align-items-center border-start py-1">
             <Button variant="trasparent" onClick={handleShow} className="py-0">
               <BiSolidGrid className="fs-4" />
-              <span className="d-none d-md-flex justify-content-">
+              <span className="d-none d-md-flex nav-tab">
                 Per le aziende <GoTriangleDown />
               </span>
             </Button>
@@ -189,26 +182,79 @@ function MyNav() {
                     <strong>Scopri altro per il business</strong>
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>Assumi su LinkeIn</Card.Title>
-                    <Card.Text>Trova, attrai e assumi</Card.Text>
-                    <Card.Title>Vendi con LinkedIn</Card.Title>
-                    <Card.Text>Sblocca nuove opportunità di vendita</Card.Text>
-                    <Card.Title>Offerta di lavoro gratuita</Card.Title>
-                    <Card.Text>Ottieni rapidamente candidati qualiticati</Card.Text>
-                    <Card.Title>Fai Pubblicità su LinkeIn</Card.Title>
-                    <Card.Text>Acquisisci clienti e fai crescere la tua azienda</Card.Text>
-                    <Card.Title>Impara con LinkedIn</Card.Title>
-                    <Card.Text>Corsi per formare i tuoi dipendenti</Card.Text>
-                    <Card.Title>Centro amministrazione</Card.Title>
-                    <Card.Text>Gestisci i dettagli di fatturazione e account</Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Assumi su LinkeIn
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Trova, attrai e assumi
+                      </a>
+                    </Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Vendi con LinkedIn
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Sblocca nuove opportunità di vendita
+                      </a>
+                    </Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Offerta di lavoro gratuita
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Ottieni rapidamente candidati qualiticati
+                      </a>
+                    </Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Fai Pubblicità su LinkeIn
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Acquisisci clienti e fai crescere la tua azienda
+                      </a>
+                    </Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Impara con LinkedIn
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Corsi per formare i tuoi dipendenti
+                      </a>
+                    </Card.Text>
+                    <Card.Title>
+                      <a href="/*" className="a-custom">
+                        Centro amministrazione
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <a href="/*" className="a-custom">
+                        Gestisci i dettagli di fatturazione e account
+                      </a>
+                    </Card.Text>
                   </Card.Body>
                   <Card.Header>
-                    <strong>Crea una pagina aziendale + </strong>
+                    <a href="/*" className="a-custom">
+                      <strong>Crea una pagina aziendale + </strong>
+                    </a>
                   </Card.Header>
                 </Card>
               </Offcanvas.Body>
             </Offcanvas>
           </Nav.Link>
+          <a href="/*" className="premium">
+            Prova Premium gratis
+          </a>
         </Nav>
       </Container>
     </Navbar>

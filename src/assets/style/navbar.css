@@ -29,3 +29,21 @@
   position: fixed;
   z-index: 10000;
 }
+
+.margin-custom {
+  margin-left: auto !important;
+}
+
+.premium {
+  color: #905908;
+  font-size: small;
+}
+
+.a-custom {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-tab {
+  font-size: small;
+}
