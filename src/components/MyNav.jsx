@@ -1,4 +1,4 @@
-import { Container, Form, Nav, Navbar, NavDropdown, Button, InputGroup, Modal } from "react-bootstrap/";
+import { Container, Form, Nav, Navbar, NavDropdown, Dropdown, Button, Offcanvas } from "react-bootstrap";
 import { FaLinkedin } from "react-icons/fa";
 import { IoSearchSharp, IoHomeSharp, IoNotifications } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
@@ -7,72 +7,73 @@ import { TiMessageTyping } from "react-icons/ti";
 import { MdAccountCircle } from "react-icons/md";
 import { BiSolidGrid } from "react-icons/bi";
 import "../assets/style/navbar.css";
+import { useState } from "react";
+import { GoTriangleDown } from "react-icons/go";
 
 function MyNav() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [showB, setShowB] = useState(true);
+  const toggleShowB = () => setShowB(!showB);
+
   return (
-    <Navbar sticky="top" className="bg-body-tertiary nopadding">
+    <Navbar sticky="top" className="bg-white shadow-sm nopadding">
       <Container>
         <Nav className="my-2 my-lg-0 p-0" navbarScroll>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center" style={{ justifyContent: "space-around" }}>
             <Nav.Link className="p-0">
-              <FaLinkedin className="fs-1" />
+              <FaLinkedin className="linkedin-icon fs-1" />
             </Nav.Link>
-            <Nav.Link className="p-0">
-              <Form className="d-flex bg-secondary rounded me-5">
-                <InputGroup>
-                  <InputGroup.Text className="bg-transparent border-0 pe-0">
-                    <IoSearchSharp className="fs-5" />
-                  </InputGroup.Text>
-                  <Form.Control
-                    type="search"
-                    placeholder="Cerca"
-                    className="bg-transparent d-none d-lg-flex border-0 me-2"
-                    aria-label="Search"
-                  />
-                </InputGroup>
+            <Nav.Link className="d-flex flex-column align-items-center px-1">
+              <Form className="search d-flex align-items-center rounded ">
+                <IoSearchSharp className="fs-4" />
+
+                <Form.Control
+                  type="search"
+                  placeholder="Cerca"
+                  className="bg-transparent d-none d-xl-flex border-0 me-2"
+                  aria-label="Search"
+                />
               </Form>
             </Nav.Link>
           </div>
 
-          <img src="" alt="" />
-
-          <Nav.Link href="#action1" className="d-flex flex-column align-items-center ms-5">
+          <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1 ms-5">
             <span>
               <IoHomeSharp className="fs-4" />
             </span>
-            <span className="d-none d-lg-flex">Home</span>
+            <span className="d-none d-md-flex">Home</span>
           </Nav.Link>
-          <Nav.Link href="#action2" className="d-flex flex-column align-items-center">
+          <Nav.Link to="/*" href="#action2" className="d-flex flex-column align-items-center py-1">
             <span>
               <FaUserGroup className="fs-4" />
             </span>
-            <span className="d-none d-lg-flex">Rete</span>
+            <span className="d-none d-md-flex">Rete</span>
           </Nav.Link>
-          <Nav.Link href="#action3" className="d-flex flex-column align-items-center">
+          <Nav.Link to="/*" href="#action3" className="d-flex flex-column align-items-center py-1">
             <span>
               <MdWork className="fs-4" />
             </span>
-            <span className="d-none d-lg-flex">Lavoro</span>
+            <span className="d-none d-md-flex">Lavoro</span>
           </Nav.Link>
-          <Nav.Link href="#action4" className="d-flex flex-column align-items-center">
+          <Nav.Link to="/*" href="#action4" className="d-flex flex-column align-items-center py-1">
             <span>
               <TiMessageTyping className="fs-4" />
             </span>
-            <span className="d-none d-lg-flex">Messaggistica</span>
+            <span className="d-none d-md-flex">Messaggistica</span>
           </Nav.Link>
-          <Nav.Link href="#action5" className="d-flex flex-column align-items-center">
+          <Nav.Link to="/*" href="#action5" className="d-flex flex-column align-items-center py-1">
             <span>
               <IoNotifications className="fs-4" />
             </span>
-            <span className="d-none d-lg-flex">Notifiche</span>
+            <span className="d-none d-md-flex">Notifiche</span>
           </Nav.Link>
-          <Nav.Link>
-            <span>
-              <MdAccountCircle className="fs-4" />
-            </span>
-            <span className="d-none d-lg-flex">
-              Tu
-              <NavDropdown id="navbarScrollingDropdown">
+          <Nav.Link to="/*" className="d-flex flex-column align-items-center py-1">
+            {/* <MdAccountCircle className="d-flex fs-4" /> */}
+            {/* <NavDropdown title="Tu" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action6">
                   <MdAccountCircle className="fs-1 m-3" />
                   Epicode
@@ -82,7 +83,6 @@ function MyNav() {
                     Visualizza Profilo
                   </Button>
                 </div>
-
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action7">
                   <strong>Account</strong>
@@ -102,36 +102,64 @@ function MyNav() {
                 <NavDropdown.Item href="#action14">Account per la pubblicazione</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action15">Esci</NavDropdown.Item>
-              </NavDropdown>
-            </span>
+              </NavDropdown> */}
+
+            <Dropdown className="d-flex flex-column justify-content-center">
+              <Dropdown.Toggle className="py-0" variant="transparent" id="dropdown-basic">
+                <MdAccountCircle className="d-flex fs-4" />
+                <span className="d-none d-md-inline-flex">Tu</span>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#action6">
+                  <MdAccountCircle className="fs-1 m-3" />
+                  Epicode
+                </Dropdown.Item>
+                <div className="text-center">
+                  <Button variant="outline-primary" className="rounded-5">
+                    Visualizza Profilo
+                  </Button>
+                </div>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#action7">
+                  <strong>Account</strong>
+                </Dropdown.Item>
+                <Dropdown.Item href="#action8">Gestisci</Dropdown.Item>
+                <Dropdown.Item href="#action9">
+                  <FaDiamond className="me-2" />
+                  Prova Premium gratis
+                </Dropdown.Item>
+                <Dropdown.Item href="#action10">Guida</Dropdown.Item>
+                <Dropdown.Item href="#action11">Lingua</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#action12">
+                  <strong>Gestisci</strong>
+                </Dropdown.Item>
+                <Dropdown.Item href="#action13">Post e attività</Dropdown.Item>
+                <Dropdown.Item href="#action14">Account per la pubblicazione</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#action15">Esci</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav.Link>
 
           <div className="border-start"></div>
-          <Nav.Link href="#" className="d-flex flex-column align-items-center">
-            <span>
+          <Nav.Link href="#" className="d-flex flex-column align-items-center py-1">
+            <Button variant="trasparent" onClick={handleShow} className="py-0">
               <BiSolidGrid className="fs-4" />
-            </span>
-            <span className="d-none d-md-flex justify-content-">
-              Per le aziende
-              <NavDropdown>
-                <div className="modal show" style={{ display: "block", position: "initial" }}>
-                  <Modal.Dialog>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal title</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                      <p>Modal body text goes here.</p>
-                    </Modal.Body>
-
-                    <Modal.Footer>
-                      <Button variant="secondary">Close</Button>
-                      <Button variant="primary">Save changes</Button>
-                    </Modal.Footer>
-                  </Modal.Dialog>
-                </div>
-              </NavDropdown>
-            </span>
+              <span className="d-none d-md-flex justify-content-">
+                Per le aziende <GoTriangleDown />
+              </span>
+            </Button>
+            <Offcanvas show={show} onHide={handleClose} placement="end">
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
+                lists, etc.
+              </Offcanvas.Body>
+            </Offcanvas>
           </Nav.Link>
         </Nav>
       </Container>
