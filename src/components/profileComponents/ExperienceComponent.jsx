@@ -136,12 +136,15 @@ const ExperienceComponent = ({ userId, token }) => {
       {/* Modal per aggiungere o modificare un'esperienza */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{currentExperience._id ? "Modifica Esperienza" : "Aggiungi Esperienza"}</Modal.Title>
+          <Modal.Title className="fs-5">
+            {currentExperience._id ? "Modifica Esperienza" : "Aggiungi Esperienza"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
+            <div></div>
             <Form.Group className="mb-3">
-              <Form.Label>Ruolo</Form.Label>
+              <Form.Label className="lead fs-6">Ruolo</Form.Label>
               <Form.Control
                 type="text"
                 name="role"
@@ -150,7 +153,7 @@ const ExperienceComponent = ({ userId, token }) => {
                 required
               />
 
-              <Form.Label>Azienda</Form.Label>
+              <Form.Label className="lead fs-6 mt-2">Azienda</Form.Label>
               <Form.Control
                 type="text"
                 name="company"
@@ -159,7 +162,7 @@ const ExperienceComponent = ({ userId, token }) => {
                 required
               />
 
-              <Form.Label>Data di inizio</Form.Label>
+              <Form.Label className="lead fs-6 mt-2">Data di inizio</Form.Label>
               <Form.Control
                 type="date"
                 name="startDate"
@@ -168,10 +171,10 @@ const ExperienceComponent = ({ userId, token }) => {
                 required
               />
 
-              <Form.Label>Data di fine (o prevista)</Form.Label>
+              <Form.Label className="lead fs-6 mt-2">Data di fine (o prevista)</Form.Label>
               <Form.Control type="date" name="endDate" value={currentExperience.endDate} onChange={handleInputChange} />
 
-              <Form.Label>Luogo</Form.Label>
+              <Form.Label className="lead fs-6">Luogo</Form.Label>
               <Form.Control
                 type="text"
                 name="area"
@@ -180,10 +183,10 @@ const ExperienceComponent = ({ userId, token }) => {
                 required
               />
 
-              <Form.Label>Immagine</Form.Label>
+              <Form.Label className="lead fs-6 mt-2">Immagine</Form.Label>
               <Form.Control type="text" name="image" value={currentExperience.image} onChange={handleInputChange} />
 
-              <Form.Label>Descrizione</Form.Label>
+              <Form.Label className="lead fs-6 mt-2">Descrizione</Form.Label>
               <Form.Control
                 as="textarea"
                 name="description"
@@ -195,10 +198,7 @@ const ExperienceComponent = ({ userId, token }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Chiudi
-          </Button>
-          <Button variant="primary" onClick={handleAddOrUpdateExperience}>
+          <Button variant="primary" className="rounded-5 px-4" onClick={handleAddOrUpdateExperience}>
             Salva
           </Button>
         </Modal.Footer>
