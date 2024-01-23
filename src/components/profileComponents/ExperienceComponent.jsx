@@ -28,23 +28,30 @@ const ExperienceComponent = ({ userId, token }) => {
     if (userId && token) {
       dispatch(fetchExperiences(userId, token));
     }
-  }, [userId, token, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, token]);
 
   const handleAddOrUpdateExperience = () => {
-    if (currentExperience._id) {
-      dispatch(updateExperience(userId, token, currentExperience._id, currentExperience));
-    } else {
-      dispatch(addExperience(userId, token, currentExperience));
-    }
-    setShowModal(false);
-    setCurrentExperience({
-      role: "",
-      company: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-      area: "",
-    });
+    const action = currentExperience._id
+      ? updateExperience(userId, token, currentExperience._id, currentExperience)
+      : addExperience(userId, token, currentExperience);
+
+    dispatch(action)
+      .then(() => {
+        dispatch(fetchExperiences(userId, token));
+        setShowModal(false);
+        setCurrentExperience({
+          role: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+          area: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Errore nell'aggiornamento dell'esperienza:", error);
+      });
   };
 
   const handleInputChange = (e) => {
@@ -58,6 +65,8 @@ const ExperienceComponent = ({ userId, token }) => {
   const toShortDate = (isoDate) => {
     return isoDate ? isoDate.split("T")[0] : "";
   };
+
+  console.log("Esperienze:", experiences);
   return (
     <Col xs={12}>
       <Card className="mt-2">

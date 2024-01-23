@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Container, Button } from "react-bootstrap";
+import { Row, Col, Card, Container, Button, Spinner } from "react-bootstrap";
 import "../../assets/style/profile.css";
 import ProfileBg from "../../background.jpg";
 import Premium from "../../premium.png";
@@ -27,10 +27,21 @@ const Profile = () => {
   const { profile } = useSelector((state) => state.profile);
   const { network } = useSelector((state) => state.network);
 
+  const { loading: profileLoading } = useSelector((state) => state.profile);
+  const { loading: networkLoading } = useSelector((state) => state.network);
+
   useEffect(() => {
     dispatch(fetchProfile());
     dispatch(fetchNetwork());
-  }, [dispatch]);
+  }, []);
+
+  if (profileLoading || networkLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
   console.log("Dati del Profilo:", profile);
   console.log("Dati Rete:", network);

@@ -27,7 +27,7 @@ export const fetchExperiences = (userId, token) => {
 
 export const addExperience = (userId, token, experienceData) => {
   return (dispatch) => {
-    axios
+    return axios
       .post(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, experienceData, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -36,13 +36,14 @@ export const addExperience = (userId, token, experienceData) => {
       })
       .catch((error) => {
         dispatch({ type: FETCH_EXPERIENCES_FAILURE, payload: error.message });
+        throw error;
       });
   };
 };
 
 export const updateExperience = (userId, token, expId, experienceData) => {
   return (dispatch) => {
-    axios
+    return axios
       .put(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, experienceData, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -57,7 +58,7 @@ export const updateExperience = (userId, token, expId, experienceData) => {
 
 export const deleteExperience = (userId, token, expId) => {
   return (dispatch) => {
-    axios
+    return axios
       .delete(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
