@@ -1,6 +1,7 @@
 .nopadding {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  z-index: 10000;
 }
 
 .search {
@@ -9,4 +10,22 @@
 
 .linkedin-icon {
   color: #0077b5;
+}
+
+.custon-color {
+  color: #333333;
+}
+
+.custom-shadow:hover {
+  box-shadow: 10px black;
+}
+
+.font-aziende {
+  font-size: small;
+}
+
+.offcanvas {
+  margin-top: 61px;
+  position: fixed;
+  z-index: 10000;
 }
