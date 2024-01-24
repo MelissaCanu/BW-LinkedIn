@@ -8,16 +8,18 @@ import currentUserReducer from "../reducers/currentUserReducer";
 import newsReducer from "../reducers/newsReducer";
 import experienceReducer from "../reducers/experienceReducer";
 import imageReducer from "../reducers/imageReducer";
+import jobReducer from "../reducers/jobReducers";
 
 const rootReducer = combineReducers({
-  currentUser: currentUserReducer,
-  profile: profileReducer,
-  network: networkReducer,
-  friendList: friendListReducer,
-  post: postReducers,
-  news: newsReducer,
-  experience: experienceReducer,
-  images: imageReducer,
+	currentUser: currentUserReducer,
+	profile: profileReducer,
+	network: networkReducer,
+	friendList: friendListReducer,
+	post: postReducers,
+	news: newsReducer,
+	experience: experienceReducer,
+	images: imageReducer,
+	jobs: jobReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
