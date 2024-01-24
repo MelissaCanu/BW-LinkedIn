@@ -6,6 +6,7 @@ import MyNav from "./components/MyNav";
 import Home from "./components/homeComponents/Home";
 import NewsSide from "./components/homeComponents/NewsSide";
 import { Container, Row, Col } from "react-bootstrap";
+import Lavoro from "./components/lavoroComponents/Lavoro";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <MyNav />
       <Container fluid>
         <Row>
-          <Col xs={8}>
+          <Col xs={10}>
             <Home />
           </Col>
           <Col xs={2}>
@@ -21,6 +22,7 @@ function App() {
           </Col>
         </Row>
       </Container>
+      <Lavoro />
     </div>
   );
 }
