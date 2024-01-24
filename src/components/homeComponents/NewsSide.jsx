@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import SidebarFooter from "../SidebarFooter";
 import { Row } from "react-bootstrap";
-import "/Repository/BW-LinkedIn/src/assets/style/sideNews.css";
+import "../../assets/style/sideNews.css";
 
 const NewsSide = () => {
   const { data: news } = useSelector((state) => state.news);

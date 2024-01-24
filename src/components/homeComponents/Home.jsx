@@ -8,7 +8,7 @@ import {
   hasErrorTrueAction,
   isLoadingFalseAction,
   isLoadingTrueAction,
-} from "/Repository/BW-LinkedIn/src/redux/actions/homeAction";
+} from "../../redux/actions/homeAction";
 
 import FormHome from "./FormHome";
 

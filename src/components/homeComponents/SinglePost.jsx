@@ -1,7 +1,7 @@
 import { Col, Image, Row, Button } from "react-bootstrap";
 import { PlusLg, Trash, PencilFill, DashLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { addFriendAction, deleteFriendAction } from "/Repository/BW-LinkedIn/src/redux/actions/friendListAction";
+import { addFriendAction, deleteFriendAction } from "../../redux/actions/friendListAction";
 
 const SinglePost = ({
   elem,

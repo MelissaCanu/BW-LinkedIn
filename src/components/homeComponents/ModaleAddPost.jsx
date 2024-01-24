@@ -9,7 +9,7 @@ import {
   hasErrorTrueAction,
   isLoadingFalseAction,
   isLoadingTrueAction,
-} from "/Repository/BW-LinkedIn/src/redux/actions/homeAction";
+} from "../../redux/actions/homeAction";
 
 const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modifica, idPost }) => {
   const dispatch = useDispatch();
