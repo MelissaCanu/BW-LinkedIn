@@ -5,6 +5,7 @@ export const IS_LOADING_TRUE = "IS_LOADING_TRUE";
 export const ADD_POSTS = "ADD_POSTS";
 export const ADD_CURRENT_USER_DATA = "ADD_CURRENT_USER_DATA";
 export const HAS_ERROR_FALSE = "HAS_ERROR_FALSE";
+export const ADD_NEWS = "ADD_NEWS";
 
 export const addErrorMessageAction = (string) => ({
   type: ADD_ERROR_MESSAGE,
@@ -34,6 +35,8 @@ export const hasErrorFalseAction = () => ({
   type: HAS_ERROR_FALSE,
   payload: false,
 });
+export const addPosts = (data) => ({ type: ADD_POSTS, payload: data });
+export const addNews = (data) => ({ type: ADD_NEWS, payload: data });
 
 export const fetchPost = () => {
   return async (dispatch) => {
@@ -48,7 +51,7 @@ export const fetchPost = () => {
       });
       if (risp.ok) {
         const data = await risp.json();
-        dispatch(ADD_POSTS(data));
+        dispatch(addPosts(data));
       } else {
         dispatch(hasErrorTrueAction());
         throw new Error(risp.status);
@@ -56,6 +59,33 @@ export const fetchPost = () => {
     } catch (error) {
       dispatch(addErrorMessageAction(error.message));
       console.log("si e' verificato un errore", error.message);
+    } finally {
+      dispatch(isLoadingFalseAction());
+    }
+  };
+};
+
+export const fetchNews = () => {
+  console.log("chiamata");
+  return async (dispatch) => {
+    try {
+      dispatch(isLoadingTrueAction());
+      const response = await fetch("https://api.spaceflightnewsapi.net/v4/articles", {
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const news = await response.json();
+        console.log(news);
+        dispatch(addNews(news));
+      } else {
+        dispatch(hasErrorTrueAction());
+        throw new Error(response.status);
+      }
+    } catch (error) {
+      dispatch(addErrorMessageAction(error.message));
+      console.log("Si e' verficato un errore", error.message);
     } finally {
       dispatch(isLoadingFalseAction());
     }

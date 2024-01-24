@@ -1,4 +1,4 @@
-import { Col, Image, Row } from "react-bootstrap";
+import { Col, Image, Row, Button } from "react-bootstrap";
 import { PlusLg, Trash, PencilFill, DashLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addFriendAction, deleteFriendAction } from "/Repository/BW-LinkedIn/src/redux/actions/friendListAction";
@@ -14,7 +14,7 @@ const SinglePost = ({
   setModifica,
   setIdPost,
 }) => {
-  const list = useSelector((state) => state.listFriends.list);
+  const { list = [] } = useSelector((state) => state.friendList);
   const dispatch = useDispatch();
   const calcolaData = () => {
     const createdate = new Date(elem.createdAt);
@@ -76,25 +76,29 @@ const SinglePost = ({
             {profile._id !== elem.user._id &&
               (list.find((x) => x._id === elem.user._id) ? (
                 <>
-                  <DashLg
-                    className="me-2"
-                    style={{ cursor: "pointer" }}
+                  <Button
+                    style={{ borderRadius: "30px" }}
+                    variant="outline-primary"
                     onClick={() => {
                       dispatch(deleteFriendAction(elem.user._id));
                     }}
-                  />
-                  <span className="d-none d-sm-inline-block">SEGUI GIA'</span>
+                  >
+                    <DashLg className="me-2 mb-1" />
+                    SEGUI GIA'
+                  </Button>
                 </>
               ) : (
                 <>
-                  <PlusLg
-                    className="me-2"
-                    style={{ cursor: "pointer" }}
+                  <Button
+                    style={{ borderRadius: "30px" }}
+                    variant="outline-primary"
                     onClick={() => {
                       dispatch(addFriendAction(elem.user));
                     }}
-                  />
-                  <span className="d-none d-sm-inline-block">SEGUI</span>
+                  >
+                    <PlusLg className="me-2 mb-1" />
+                    SEGUI
+                  </Button>
                 </>
               ))}
             {profile._id === elem.user._id && (

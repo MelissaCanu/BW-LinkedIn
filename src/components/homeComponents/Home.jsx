@@ -11,8 +11,9 @@ import {
 } from "/Repository/BW-LinkedIn/src/redux/actions/homeAction";
 
 import FormHome from "./FormHome";
-import SidebarFooter from "../SidebarFooter";
+
 import SinglePost from "./SinglePost";
+
 const Home = () => {
   const posts = useSelector((state) => state.post.data);
   const isLoading = useSelector((state) => state.currentUser.isLoading);
@@ -23,7 +24,6 @@ const Home = () => {
   const [idPost, setIdPost] = useState("");
   const [page, setPage] = useState(1);
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -51,7 +51,7 @@ const Home = () => {
     }
   };
 
-  const delPost = async (postId) => {
+  const deletePost = async (postId) => {
     try {
       console.log("Cancella");
       dispatch(isLoadingTrueAction());
@@ -77,9 +77,22 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchPost());
-    fetchUser();
-  }, []);
+    const fetchData = async () => {
+      try {
+        dispatch(isLoadingTrueAction());
+        dispatch(fetchPost());
+        fetchUser();
+      } catch (error) {
+        dispatch(hasErrorTrueAction());
+        dispatch(addErrorMessageAction(error.message));
+        console.log("Si è verificato un errore", error.message);
+      } finally {
+        dispatch(isLoadingFalseAction());
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   return isLoading ? (
     <div className="mt-5 d-flex justify-content-center">
@@ -90,9 +103,6 @@ const Home = () => {
   ) : (
     <Container fluid="lg" className="my-3">
       <Row>
-        <Col xs={12} md={2} lg={2}>
-          {/* <Sidebar profile={profile} /> */}
-        </Col>
         <Col xs={12} md={10} lg={7}>
           <FormHome
             profile={profile}
@@ -115,7 +125,7 @@ const Home = () => {
                 <SinglePost
                   elem={elem}
                   key={`post${i}`}
-                  cancella={delPost}
+                  cancella={deletePost}
                   profile={profile}
                   handleClose={handleClose}
                   handleShow={handleShow}
@@ -137,7 +147,7 @@ const Home = () => {
                   <SinglePost
                     elem={elem}
                     key={`post${i}`}
-                    cancella={delPost}
+                    cancella={deletePost}
                     profile={profile}
                     handleClose={handleClose}
                     handleShow={handleShow}
@@ -169,13 +179,6 @@ const Home = () => {
                 <CaretRight />
               </Pagination.Item>
             </Pagination>
-          </div>
-        </Col>
-        <Col xs={12} lg={3}>
-          {/* <NewsSidebar /> */}
-          <div style={{ position: "sticky", top: "100px" }}>
-            {/* <PromoCard /> */}
-            <SidebarFooter />
           </div>
         </Col>
       </Row>

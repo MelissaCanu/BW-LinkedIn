@@ -18,13 +18,14 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
   const fetchNewPost = async () => {
     if (postText) {
       try {
+        console.log("vediamo se siamo nel try");
         dispatch(isLoadingTrueAction());
         const resp = await fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
           method: "POST",
           body: JSON.stringify({ text: postText }),
           headers: {
             "content-type": "application/json",
-            Autorization:
+            Authorization:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlOTBhNGJkNWQxMjAwMTg5MGQzMTgiLCJpYXQiOjE3MDU5MzkxMDgsImV4cCI6MTcwNzE0ODcwOH0.1uiduDteuO646k5b6tK8nq0uhzV1ZV4npoqRktlImNI",
           },
         });
@@ -59,7 +60,7 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
         body: JSON.stringify({ text: postText }),
         headers: {
           "content-type": "application/json",
-          Autorization:
+          Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlOTBhNGJkNWQxMjAwMTg5MGQzMTgiLCJpYXQiOjE3MDU5MzkxMDgsImV4cCI6MTcwNzE0ODcwOH0.1uiduDteuO646k5b6tK8nq0uhzV1ZV4npoqRktlImNI",
         },
       });

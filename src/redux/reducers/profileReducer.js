@@ -2,7 +2,7 @@ import { FETCH_PROFILE_REQUEST, FETCH_PROFILE_SUCCESS, FETCH_PROFILE_FAILURE } f
 
 const initialState = {
   loading: false,
-  profile: {},
+  profile: [],
   error: "",
 };
 
