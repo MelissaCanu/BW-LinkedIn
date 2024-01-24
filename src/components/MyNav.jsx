@@ -20,9 +20,9 @@ import { MdAccountCircle } from "react-icons/md";
 import { BiSolidGrid } from "react-icons/bi";
 import "../assets/style/navbar.css";
 import { GoTriangleDown } from "react-icons/go";
-<<<<<<< HEAD
+
 import { useState } from "react";
-=======
+
 import { GoVideo } from "react-icons/go";
 import { CgInsights } from "react-icons/cg";
 import { MdBusinessCenter } from "react-icons/md";
