@@ -6,6 +6,7 @@ import MyNav from "./components/MyNav";
 function App() {
   return (
     <div>
+      <MyNav />
       <Profile />
     </div>
   );
