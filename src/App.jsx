@@ -10,18 +10,16 @@ import { Container, Row, Col } from "react-bootstrap";
 function App() {
   return (
     <div>
-      <Container fluid>
-        <MyNav />
-        <Profile />
-        <Row>
-          <Col xs={8}>
-            <Home />
-          </Col>
-          <Col xs={2}>
-            <NewsSide />
-          </Col>
-        </Row>
-      </Container>
+      <MyNav />
+      <Profile />
+      <Row>
+        <Col xs={8}>
+          <Home />
+        </Col>
+        <Col xs={2}>
+          <NewsSide />
+        </Col>
+      </Row>
     </div>
   );
 }
