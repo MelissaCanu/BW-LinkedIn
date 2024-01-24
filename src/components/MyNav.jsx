@@ -1,4 +1,16 @@
-import { Container, Form, Nav, Navbar, Dropdown, Button, Offcanvas, Card, Row, Col } from "react-bootstrap/";
+import {
+  Container,
+  Form,
+  Nav,
+  Navbar,
+  Dropdown,
+  Button,
+  Offcanvas,
+  Card,
+  Row,
+  Col,
+  InputGroup,
+} from "react-bootstrap/";
 import { FaLinkedin } from "react-icons/fa";
 import { IoSearchSharp, IoHomeSharp, IoNotifications } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
@@ -19,26 +31,44 @@ import { TiTick } from "react-icons/ti";
 
 function MyNav() {
   const [show, setShow] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleToggle = (component) => {
+    if (component === "search") {
+      setShowSearch(!showSearch);
+    } else if (component === "offcanvas") {
+      setShow(!show);
+    }
+  };
 
   return (
-    <Navbar sticky="top" className="bg-white d-flex shadow-sm nopadding">
-      <Container className="">
-        <Nav className="d-flex my-2 my-lg-0 p-0" variant="underline" navbarScroll>
-          <FaLinkedin className="linkedin-icon fs-1 m-auto" />
+    <Navbar sticky="top" className="bg-white d-flex justify-content-center shadow-sm nopadding">
+      <Container className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center me-auto">
+          <FaLinkedin className="linkedin-icon fs-1" />
 
-          <Form className="search d-flex align-items-center rounded m-auto">
-            <IoSearchSharp className="fs-5 ms-2" />
-            <Form.Control
-              type="search"
-              placeholder="Cerca"
-              className="bg-transparent d-none d-xl-flex border-0 me-2"
-              aria-label="Search"
-            />
+          <Form className="search d-none d-lg-flex rounded ms-2">
+            <InputGroup>
+              <InputGroup.Text id="search-icon" className="bg-transparent border-0">
+                <IoSearchSharp className="fs-5 ms-2" />
+              </InputGroup.Text>
+
+              <Form.Control
+                type="search"
+                placeholder="Cerca"
+                className="bg-transparent border-0 me-2"
+                aria-label="Cerca"
+                aria-describedby="search-icon"
+              />
+            </InputGroup>
           </Form>
+          <Button variant="transparent" className="d-flex d-lg-none flex-column align-items-center py-0">
+            <IoSearchSharp className="fs-5" />
+            <span className="d-none d-md-flex nav-tab">Cerca</span>
+          </Button>
+        </div>
 
+        <Nav className="d-flex my-2 my-lg-0 p-0" variant="underline">
           <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1">
             <span>
               <IoHomeSharp className="fs-4" />
@@ -70,7 +100,7 @@ function MyNav() {
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
           </Nav.Link>
 
-          <Nav.Link to="/*" className=" py-1 m-auto">
+          <Nav.Link to="/*" className=" py-1">
             <Dropdown>
               <Dropdown.Toggle className="custom-color border-0 py-0" variant="transparent" id="dropdown-basic">
                 <MdAccountCircle className="d-flex fs-4" />
@@ -111,13 +141,18 @@ function MyNav() {
           </Nav.Link>
 
           <Nav.Link href="#" className="d-flex flex-column align-items-center border-start py-1">
-            <Button variant="trasparent" onClick={handleShow} className="py-0">
+            <Button variant="transparent" onClick={() => handleToggle("offcanvas")} className="py-0">
               <BiSolidGrid className="fs-4" />
-              <span className="d-none d-md-flex nav-tab">
+              <span className="d-none d-md-flex  nav-tab">
                 Per le aziende <GoTriangleDown />
               </span>
             </Button>
-            <Offcanvas show={show} onHide={handleClose} placement="end" className="offcanvas rounded-3">
+            <Offcanvas
+              show={show}
+              onHide={() => handleToggle("offcanvas")}
+              placement="end"
+              className="offcanvas rounded-3"
+            >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title>
                   <strong>Per le aziende</strong>
@@ -252,8 +287,13 @@ function MyNav() {
               </Offcanvas.Body>
             </Offcanvas>
           </Nav.Link>
-          <a href="/*" className="premium">
-            Prova Premium gratis
+          <a href="/*" className="d-none d-xl-inline text-center premium">
+            Una rete più smart? <br />
+            Prova Premium <br />
+            gratuitamente
+          </a>
+          <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
+            Prova Premium
           </a>
         </Nav>
       </Container>
