@@ -1,26 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
+import { Row, Col, Card, Container, Button, Spinner, Navbar, Nav, Image } from "react-bootstrap";
 import "../../assets/style/profile.css";
 import ProfileBg from "../../background.jpg";
 import Premium from "../../premium.png";
-import {
-  Pencil,
-  EyeFill,
-  PeopleFill,
-  BarChartFill,
-  Search,
-  Broadcast,
-  PersonFillAdd,
-  PencilFill,
-  PlusLg,
-} from "react-bootstrap-icons";
+import { Pencil, PersonFillAdd, PencilFill, PlusLg } from "react-bootstrap-icons";
 import { fetchProfile } from "../../redux/actions/profileAction";
 import { fetchNetwork } from "../../redux/actions/networkAction";
+import { uploadProfilePicture } from "../../redux/actions/imageAction";
 import FooterProfile from "../FooterProfile";
 import SuggestedComponent from "./SuggestedComponent";
 import AnalysesComponent from "./AnalysesComponent";
 import ResourceComponent from "./ResourceComponent";
+import ExperienceComponent from "./ExperienceComponent";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -32,22 +24,100 @@ const getRandomElements = (arr, count) => {
 };
 
 const Profile = () => {
+  const [navbarClass, setNavbarClass] = useState("slide-out");
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    if (currentScrollPos > 100) {
+      setNavbarClass("slide-in");
+    } else {
+      setNavbarClass("slide-out");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const dispatch = useDispatch();
+
   const { profile } = useSelector((state) => state.profile);
   const { network } = useSelector((state) => state.network);
+
+  const { loading: profileLoading } = useSelector((state) => state.profile);
+  const { loading: networkLoading } = useSelector((state) => state.network);
+
+  const displayedNetwork = useMemo(() => getRandomElements(network, 5), [network]);
+  const displayedNetwork2 = useMemo(() => getRandomElements(network, 5), [network]);
 
   useEffect(() => {
     dispatch(fetchProfile());
     dispatch(fetchNetwork());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  console.log("Dati del Profilo:", profile);
-  console.log("Dati Rete:", network);
-  const { name, surname, email, username, area, title, image } = profile;
-  const displayedNetwork = getRandomElements(network, 5);
-  const displayedNetwork2 = getRandomElements(network, 5);
+  if (profileLoading || networkLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
+  console.log("Aggiornamento Profilo:", profile);
+  console.log("Aggiornamento Rete:", network);
+  const { name, surname, area, title, image, _id } = profile;
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    if (selectedFile && typeof _id === "string") {
+      dispatch(uploadProfilePicture(_id, selectedFile));
+    } else {
+      console.error("Invalid userID or no file selected");
+    }
+  };
+
   return (
     <>
+      <Navbar
+        fixed="top"
+        bg="light"
+        expand="lg"
+        className={`secondary-navbar ${navbarClass} shadow border border-0 border-top border-bottom d-none d-lg-block`}
+      >
+        <Container>
+          <Navbar.Brand href="#home">
+            <Image src={image} roundedCircle style={{ width: "40px" }} />
+          </Navbar.Brand>
+          <Nav className="me-auto">
+            <div className="d-flex flex-column">
+              <span style={{ fontWeight: "600" }}>
+                {name} {surname}
+              </span>
+              <span className="lead" style={{ fontSize: "14px" }}>
+                {title}
+              </span>
+            </div>
+          </Nav>
+          <Nav>
+            <Button variant="outline-secondary" className="rounded-5 px-3 py-1 border-2 custom-button-3 mt-2 mt-lg-0">
+              Altro
+            </Button>
+
+            <Button variant="outline-primary" className="rounded-5 px-3 border-2 py-1  custom-button-2 ms-2">
+              Aggiungi sezione del profilo
+            </Button>
+
+            <Button className="rounded-5 px-3 border-2 py-1 custom-button-1 ms-2">Disponibile per</Button>
+          </Nav>
+        </Container>
+      </Navbar>
       <Container className="mt-4">
         {/* ROW PRIMA SEZIONE */}
         <Row>
@@ -92,6 +162,10 @@ const Profile = () => {
               </Card.Body>
             </Card>
           </Col>
+          {/*           <div>
+            <input type="file" onChange={handleFileChange} />
+            <button onClick={handleUpload}>Carica Immagine del Profilo</button>
+          </div> */}
           <Col md={4}>
             <Card className="mt-2 mt-md-0">
               <Card.Body>
@@ -191,19 +265,12 @@ const Profile = () => {
               </Card>
             </Col>
 
-            <Col xs={12}>
-              <Card className=" mt-2">
-                <Card.Body className="pb-0">
-                  <div className="d-flex justify-content-between">
-                    <Card.Title className="mb-4">Formazione</Card.Title>
-                    <Card.Link href="#">
-                      <PlusLg className="text-secondary fs-3" />
-                      <PencilFill className="text-secondary ms-4 fs-4" />
-                    </Card.Link>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
+            <ExperienceComponent
+              userId={_id}
+              token={
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlNzY2YzYwMGJlMTAwMTgzYTg2YzciLCJpYXQiOjE3MDU5MzIzOTYsImV4cCI6MTcwNzE0MTk5Nn0._lXDAp9GrSaRCbC4PwGaSAxnfN79__pJeNpk4ERaOD0"
+              }
+            />
 
             <Col xs={12}>
               <Card className=" mt-2">

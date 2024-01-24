@@ -6,6 +6,8 @@ import friendListReducer from "../reducers/friendListReducer";
 import postReducers from "../reducers/postReducer";
 import currentUserReducer from "../reducers/currentUserReducer";
 import newsReducer from "../reducers/newsReducer";
+import experienceReducer from "../reducers/experienceReducer";
+import imageReducer from "../reducers/imageReducer";
 
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   friendList: friendListReducer,
   post: postReducers,
   news: newsReducer,
+  experience: experienceReducer,
+  images: imageReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

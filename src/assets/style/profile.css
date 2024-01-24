@@ -44,3 +44,37 @@ body {
   background-color: #ebebeb;
   cursor: pointer;
 }
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.secondary-navbar {
+  top: 59.43px;
+  z-index: 10;
+  animation-fill-mode: forwards;
+  display: block;
+  transform: translateY(-100%);
+}
+
+.secondary-navbar.slide-in {
+  animation: slideDown 0.9s ease forwards;
+}
+
+.secondary-navbar.slide-out {
+  animation: slideUp 0.9s ease forwards;
+}

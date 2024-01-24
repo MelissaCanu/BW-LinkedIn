@@ -32,6 +32,7 @@ export const fetchNetwork = () => {
       .then((response) => {
         const network = response.data;
         dispatch(fetchNetworkSuccess(network));
+        console.log("Dati ricevuti da Network:", response.data);
       })
       .catch((error) => {
         dispatch(fetchNetworkFailure(error.message));
