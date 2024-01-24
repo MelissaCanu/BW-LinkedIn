@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Pagination, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Pagination, Row, Spinner, Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
 import {
@@ -13,6 +13,8 @@ import {
 import FormHome from "./FormHome";
 
 import SinglePost from "./SinglePost";
+import { FaDiamond, FaUserGroup } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa";
 
 const Home = () => {
   const posts = useSelector((state) => state.post.data);
@@ -101,8 +103,75 @@ const Home = () => {
       </Spinner>
     </div>
   ) : (
-    <Container fluid="lg" className="my-3">
+    <Container className="my-3">
       <Row>
+        <Col md={2} lg={4} className="d-none d-md-block">
+          <Card className="rounded-4 shadow-sm">
+            <Card.Header className="d-flex flex-column align-items-center">
+              <Card.Title>
+                <img src="/*" alt="img-profile" className="rounded-5 my-5" />
+                <h4>Epicode</h4>
+              </Card.Title>
+              <span className="mb-2">Full-Stack Developer</span>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text className="p-2">
+                <span>Collegamenti</span>
+                <br />
+                <span>
+                  <strong>Espandi la tua rete</strong>
+                </span>
+              </Card.Text>
+              <Card.Text className="border-top p-2">
+                <span>Accedi a strumenti e informazioni in esclusiva</span>
+                <br />
+                <FaDiamond className="me-2" />
+                <span>
+                  <strong>Una rete più smart? Prova Premium gratuitamente</strong>
+                </span>
+              </Card.Text>
+              <Card.Text className="border-top p-2">
+                <FaBookmark className="me-2" />
+                <span>I miei elementi</span>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className="rounded-4 shadow-sm mt-2">
+            <Card.Body>
+              <Card.Text className="p-1 mt-2">
+                <span>Recenti</span>
+              </Card.Text>
+              <Card.Text className="p-1 ">
+                <FaUserGroup className="fs-5 me-2" />
+                <span>JavaScript</span>
+              </Card.Text>
+              <Card.Text className="text-primary p-1">
+                <span>
+                  <strong>Gruppi</strong>
+                </span>
+              </Card.Text>
+              <Card.Text className="p-1">
+                <FaUserGroup className="fs-5 me-2" />
+                <span>JavaScript</span>
+              </Card.Text>
+              <Card.Text className="p-1">
+                <span className="ms-4">Vedi tutti</span>
+              </Card.Text>
+              <Card.Text className="d-flex align-items-center justify-content-between text-primary p-1">
+                <span className="me-auto">Eventi</span>
+                <Button variant="outline-dark" className="fs-2 border-0 rounded-circle p-0">
+                  +
+                </Button>
+              </Card.Text>
+              <Card.Text className="text-primary p-1">
+                <span>Hashtag seguiti</span>
+              </Card.Text>
+            </Card.Body>
+            <Card.Header className=" text-center p-3">
+              <h4>Scopri di Più</h4>
+            </Card.Header>
+          </Card>
+        </Col>
         <Col xs={12} md={10} lg={7}>
           <FormHome
             profile={profile}

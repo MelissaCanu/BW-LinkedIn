@@ -9,23 +9,23 @@ import { Container, Row, Col } from "react-bootstrap";
 import Lavoro from "./components/lavoroComponents/Lavoro";
 
 function App() {
-	return (
-		<div>
-			<Container fluid>
-				<MyNav />
-				<Profile />
-				<Row>
-					<Col xs={8}>
-						<Home />
-					</Col>
-					<Col xs={2}>
-						<NewsSide />
-					</Col>
-				</Row>
-			</Container>
-			<Lavoro />
-		</div>
-	);
+  return (
+    <div>
+      <Container fluid>
+        <MyNav />
+        <Profile />
+        <Row>
+          <Col xs={10}>
+            <Home />
+          </Col>
+          <Col xs={2}>
+            <NewsSide />
+          </Col>
+        </Row>
+      </Container>
+      <Lavoro />
+    </div>
+  );
 }
 
 export default App;
