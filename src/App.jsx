@@ -6,24 +6,26 @@ import MyNav from "./components/MyNav";
 import Home from "./components/homeComponents/Home";
 import NewsSide from "./components/homeComponents/NewsSide";
 import { Container, Row, Col } from "react-bootstrap";
+import Lavoro from "./components/lavoroComponents/Lavoro";
 
 function App() {
-  return (
-    <div>
-      <Container fluid>
-        <MyNav />
-        <Profile />
-        <Row>
-          <Col xs={8}>
-            <Home />
-          </Col>
-          <Col xs={2}>
-            <NewsSide />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+	return (
+		<div>
+			<Container fluid>
+				<MyNav />
+				<Profile />
+				<Row>
+					<Col xs={8}>
+						<Home />
+					</Col>
+					<Col xs={2}>
+						<NewsSide />
+					</Col>
+				</Row>
+			</Container>
+			<Lavoro />
+		</div>
+	);
 }
 
 export default App;
