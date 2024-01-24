@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import SidebarFooter from "../SidebarFooter";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import "/Repository/BW-LinkedIn/src/assets/style/sideNews.css";
 
 const NewsSide = () => {
