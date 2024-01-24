@@ -9,11 +9,13 @@ import {
   deleteExperience,
 } from "../../redux/actions/experienceAction";
 import "../../assets/style/experience.css";
+import { uploadExperiencePicture } from "../../redux/actions/imageAction";
 
 const ExperienceComponent = ({ userId, token }) => {
   const dispatch = useDispatch();
   const { experiences } = useSelector((state) => state.experience);
   const [showModal, setShowModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [currentExperience, setCurrentExperience] = useState({
     role: "",
@@ -62,6 +64,17 @@ const ExperienceComponent = ({ userId, token }) => {
       });
   };
 
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUploadImage = () => {
+    if (selectedFile && currentExperience._id) {
+      dispatch(uploadExperiencePicture(userId, currentExperience._id, selectedFile, token));
+      setSelectedFile(null);
+    }
+  };
+
   const handleInputChange = (e) => {
     setCurrentExperience({ ...currentExperience, [e.target.name]: e.target.value });
   };
@@ -81,6 +94,7 @@ const ExperienceComponent = ({ userId, token }) => {
   const handleToggle = () => {
     setIsActive(!isActive);
   };
+
   return (
     <Col xs={12}>
       <Card className="mt-2">
@@ -242,6 +256,9 @@ const ExperienceComponent = ({ userId, token }) => {
                 />
 
                 <Form.Label className="lead fs-6 mt-2">Immagine</Form.Label>
+                {/*                 
+                <input type="file" onChange={handleFileChange} />
+                <button onClick={handleUploadImage}>Carica Immagine</button> */}
                 <Form.Control
                   type="text"
                   name="image"
