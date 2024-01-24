@@ -73,31 +73,31 @@ function MyNav() {
         <Nav className="d-flex my-2 my-lg-0 p-0" variant="underline">
           <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1">
             <span>
-              <IoHomeSharp className="fs-4" />
+              <IoHomeSharp className="fs-4 mt-1" />
             </span>
             <span className="d-none d-md-flex nav-tab">Home</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action2" className="d-flex flex-column align-items-center py-1">
             <span>
-              <FaUserGroup className="fs-4" />
+              <FaUserGroup className="fs-4 mt-1" />
             </span>
             <span className="d-none d-md-flex nav-tab">Rete</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action3" className="d-flex flex-column align-items-center py-1">
             <span>
-              <MdWork className="fs-4" />
+              <MdWork className="fs-4 mt-1" />
             </span>
             <span className="d-none d-md-flex nav-tab">Lavoro</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action4" className="d-flex flex-column align-items-center py-1">
             <span>
-              <TiMessageTyping className="fs-4" />
+              <TiMessageTyping className="fs-4 mt-1" />
             </span>
             <span className="d-none d-md-flex nav-tab">Messaggistica</span>
           </Nav.Link>
           <Nav.Link to="/*" href="#action5" className="d-flex flex-column align-items-center py-1">
             <span>
-              <IoNotifications className="fs-4" />
+              <IoNotifications className="fs-4 mt-1" />
             </span>
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
           </Nav.Link>
@@ -105,8 +105,8 @@ function MyNav() {
           <Nav.Link to="/*" className=" py-1">
             <Dropdown>
               <Dropdown.Toggle className="custom-color border-0 py-0" variant="transparent" id="dropdown-basic">
-                <MdAccountCircle className="d-flex fs-4" />
-                <span className="d-none d-md-inline-flex nav-tab">Tu</span>
+                <MdAccountCircle className="d-flex fs-4 mt-1" />
+                <span className="d-none d-md-inline-flex nav-tab ">Tu</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

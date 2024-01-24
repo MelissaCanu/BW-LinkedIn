@@ -11,15 +11,16 @@ function App() {
   return (
     <div>
       <MyNav />
-      <Profile />
-      <Row>
-        <Col xs={8}>
-          <Home />
-        </Col>
-        <Col xs={2}>
-          <NewsSide />
-        </Col>
-      </Row>
+      <Container fluid>
+        <Row>
+          <Col xs={8}>
+            <Home />
+          </Col>
+          <Col xs={2}>
+            <NewsSide />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
