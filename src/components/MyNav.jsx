@@ -141,7 +141,11 @@ function MyNav() {
             className="d-flex flex-column align-items-center py-1 nav-link position-relative"
           >
             <IoNotifications className="fs-4 mt-1" />
-            <Badge bg="danger" className="position-absolute top-0 start-50 translate rounded-5" style={{ zIndex: 1 }}>
+            <Badge
+              bg="danger"
+              className="position-absolute top-0 start-50 translate rounded-4"
+              style={{ zIndex: 1, fontSize: "10px", padding: "4px" }}
+            >
               10+
             </Badge>
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
