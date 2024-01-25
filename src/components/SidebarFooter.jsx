@@ -16,7 +16,7 @@ const SidebarFooter = () => {
         <li>
           <a href="#">Privacy e condizioni</a>
         </li>
-        <li>
+        <li className="text-center">
           <a href="#">Opzioni per gli annunci pubblicitari</a>
         </li>
         <li>
@@ -33,7 +33,7 @@ const SidebarFooter = () => {
         </li>
       </ul>
       <div>
-        <p>
+        <p className="text-center">
           <img src={logo} height="20" alt="linkedin" />
           <span> Linkedin Corporation ©2024</span>
         </p>
