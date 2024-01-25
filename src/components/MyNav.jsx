@@ -30,6 +30,7 @@ import { GiTwirlCenter } from "react-icons/gi";
 import { FaSafari } from "react-icons/fa";
 import { TiGroup } from "react-icons/ti";
 import { TiTick } from "react-icons/ti";
+import { NavLink, Link } from "react-router-dom";
 
 function MyNav() {
   const [show, setShow] = useState(false);
@@ -71,42 +72,32 @@ function MyNav() {
         </div>
 
         <Nav className="d-flex my-2 my-lg-0 p-0" variant="underline">
-          <Nav.Link to="/*" href="#action1" className="d-flex flex-column align-items-center py-1">
-            <span>
-              <IoHomeSharp className="fs-4" />
-            </span>
+          <NavLink to="/" className="d-flex flex-column align-items-center py-1 nav-link">
+            <IoHomeSharp className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Home</span>
-          </Nav.Link>
-          <Nav.Link to="/*" href="#action2" className="d-flex flex-column align-items-center py-1">
-            <span>
-              <FaUserGroup className="fs-4" />
-            </span>
+          </NavLink>
+          <NavLink to="/network" className="d-flex flex-column align-items-center py-1 nav-link">
+            <FaUserGroup className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Rete</span>
-          </Nav.Link>
-          <Nav.Link to="/*" href="#action3" className="d-flex flex-column align-items-center py-1">
-            <span>
-              <MdWork className="fs-4" />
-            </span>
+          </NavLink>
+          <NavLink to="/work" className="d-flex flex-column align-items-center py-1 nav-link">
+            <MdWork className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Lavoro</span>
-          </Nav.Link>
-          <Nav.Link to="/*" href="#action4" className="d-flex flex-column align-items-center py-1">
-            <span>
-              <TiMessageTyping className="fs-4" />
-            </span>
+          </NavLink>
+          <NavLink to="/messaggistica" className="d-flex flex-column align-items-center py-1 nav-link">
+            <TiMessageTyping className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Messaggistica</span>
-          </Nav.Link>
-          <Nav.Link to="/*" href="#action5" className="d-flex flex-column align-items-center py-1">
-            <span>
-              <IoNotifications className="fs-4" />
-            </span>
+          </NavLink>
+          <NavLink to="/notifiche" className="d-flex flex-column align-items-center py-1 nav-link">
+            <IoNotifications className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
-          </Nav.Link>
+          </NavLink>
 
           <Nav.Link to="/*" className=" py-1">
             <Dropdown>
               <Dropdown.Toggle className="custom-color border-0 py-0" variant="transparent" id="dropdown-basic">
-                <MdAccountCircle className="d-flex fs-4" />
-                <span className="d-none d-md-inline-flex nav-tab">Tu</span>
+                <MdAccountCircle className="d-flex fs-4 mt-1" />
+                <span className="d-none d-md-inline-flex nav-tab ">Tu</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -115,9 +106,11 @@ function MyNav() {
                   Epicode
                 </Dropdown.Item>
                 <div className="text-center">
-                  <Button variant="outline-primary" className="rounded-5 py-0 px-5">
-                    Visualizza Profilo
-                  </Button>
+                  <Link to="/profile">
+                    <Button variant="outline-primary" className="rounded-5 py-0 px-5">
+                      Visualizza Profilo
+                    </Button>
+                  </Link>
                 </div>
                 <Dropdown.Divider />
                 <Dropdown.Item href="#action7">

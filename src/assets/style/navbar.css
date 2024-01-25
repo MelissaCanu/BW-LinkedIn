@@ -48,3 +48,7 @@
   font-size: small;
   white-space: nowrap;
 }
+
+.custom-drop {
+  margin-bottom: -20000px !important;
+}

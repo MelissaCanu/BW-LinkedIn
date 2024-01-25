@@ -169,7 +169,7 @@ const ExperienceComponent = ({ userId, token }) => {
       </Card>
 
       {/* Modal per aggiungere o modificare un'esperienza */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} style={{ marginTop: "5em" }}>
         <Modal.Header closeButton>
           <Modal.Title className="fs-5">
             {currentExperience._id ? "Modifica Esperienza" : "Aggiungi Esperienza"}

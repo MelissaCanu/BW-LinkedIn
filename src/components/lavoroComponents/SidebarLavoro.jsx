@@ -10,7 +10,7 @@ import {
 
 const SidebarLavoro = () => {
 	return (
-		<Card className="p-3 sticky-top" style={{ top: "100px", zIndex: "1" }}>
+		<Card className="p-3 sticky-top" style={{ top: "87px", zIndex: "1" }}>
 			<div className="mt-4 mb-4">
 				<Container fluid className="mb-4">
 					<Row className="align-items-center">

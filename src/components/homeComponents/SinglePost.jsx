@@ -46,9 +46,9 @@ const SinglePost = ({
   return (
     elem &&
     profile && (
-      <div className="border border-1 rounded-3 shadow my-3 p-3 bg-light">
+      <div className="border border-1 rounded-3 shadow-sm my-3 p-3 bg-light">
         <Row className=" justify-content-between mb-2">
-          <Col xs="auto">
+          <Col xs={2} className="pe-0">
             <Image
               src={elem ? elem.user.image : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
               alt="profileImg"
@@ -58,67 +58,73 @@ const SinglePost = ({
               style={{ objectFit: "cover" }}
             />
           </Col>
-          <Col sm={5} lg={7} className=" order-5 order-sm-0">
+          <Col xs={6} className=" order-5 order-sm-0 p-0 ms-4">
             <div className="d-flex flex-column">
               <h6>
                 {elem.user.name} {elem.user.surname}
               </h6>
-              <p
-                className="w-100 mb-0"
-                style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontSize: "14px" }}
-              >
+              <p className="w-100 mb-0" style={{ fontSize: "14px" }}>
                 {elem.user.title}
               </p>
               <p style={{ fontWeight: "300", fontSize: "12px" }}> {calcolaData()}</p>
             </div>
           </Col>
-          <Col xs={12} sm={3} className="text-primary text-end ">
+          <Col xs={3} className="text-primary text-end ">
             {profile._id !== elem.user._id &&
               (list.find((x) => x._id === elem.user._id) ? (
                 <>
-                  <Button
-                    style={{ borderRadius: "30px" }}
-                    variant="outline-primary"
-                    onClick={() => {
-                      dispatch(deleteFriendAction(elem.user._id));
-                    }}
-                  >
-                    <DashLg className="me-2 mb-1" />
-                    SEGUI GIA'
-                  </Button>
+                  <div className="d-flex">
+                    <Button
+                      variant="outline-primary"
+                      className="d-flex border-0"
+                      style={{ fontSize: "13px" }}
+                      onClick={() => {
+                        dispatch(deleteFriendAction(elem.user));
+                      }}
+                    >
+                      <DashLg className=" mt-1" />
+                      Segui giá
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <>
                   <Button
-                    style={{ borderRadius: "30px" }}
                     variant="outline-primary"
+                    className="d-flex border-0"
+                    style={{ fontSize: "13px" }}
                     onClick={() => {
                       dispatch(addFriendAction(elem.user));
                     }}
                   >
-                    <PlusLg className="me-2 mb-1" />
-                    SEGUI
+                    <PlusLg className="me-2 mt-1" />
+                    Segui
                   </Button>
                 </>
               ))}
             {profile._id === elem.user._id && (
               <>
-                <PencilFill
-                  onClick={() => {
-                    setIdPost(elem._id);
-                    handleShow();
-                    setModifica(true);
-                    setPostText(elem.text);
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
-                <Trash
-                  className="text-danger ms-2"
-                  onClick={() => {
-                    cancella(elem._id);
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
+                <Button variant="outline-secondary rounded-5 border-0">
+                  <PencilFill
+                    className="mb-1"
+                    onClick={() => {
+                      setIdPost(elem._id);
+                      handleShow();
+                      setModifica(true);
+                      setPostText(elem.text);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                </Button>
+                <Button variant="outline-secondary rounded-5 border-0">
+                  <Trash
+                    className="mb-1"
+                    onClick={() => {
+                      cancella(elem._id);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                </Button>
               </>
             )}
           </Col>

@@ -33,9 +33,7 @@ const PremiumElencoJobs = () => {
 							i migliori candidati
 						</Card.Title>
 						<div className="jobs-home-upsell-card__social-proof mt-2">
-							<div className="ivm-image-view-model jobs-home-upsell-card__facepile">
-								{/* Add your facepile images here */}
-							</div>
+							<div className="ivm-image-view-model jobs-home-upsell-card__facepile"></div>
 							<p className="text-body-xsmall">
 								Miriam e milioni di altri utenti usano Premium
 							</p>
