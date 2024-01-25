@@ -1,7 +1,7 @@
 import { UPLOAD_PROFILE_PICTURE, UPLOAD_EXPERIENCE_PICTURE, UPLOAD_POST_PICTURE } from "../actions/imageAction";
 
 const initialState = {
-  profilePicture: null,
+  profilePicture: {},
   experiencePictures: {},
   postPictures: {},
 };

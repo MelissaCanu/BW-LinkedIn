@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, ListGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup, Button, InputGroup, FormControl } from "react-bootstrap";
 import { useState } from "react";
 import "../assets/style/messaggistica.css";
 import Premium from "../premium.png";
@@ -7,7 +7,7 @@ import Pietro from "../assets/imgChat/pietro.png";
 import GPT from "../assets/imgChat/chat.jpg";
 import Chiara from "../assets/imgChat/chiara.png";
 import EPICODE from "../assets/imgChat/epicode.jpg";
-import { ThreeDots, PencilSquare } from "react-bootstrap-icons";
+import { ThreeDots, PencilSquare, Search, SortDown } from "react-bootstrap-icons";
 
 const MessaggisticaComponent = () => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -99,7 +99,7 @@ const MessaggisticaComponent = () => {
           <Card className="mt-3" style={{ height: "90vh" }}>
             <Card.Body className="ps-2 pt-0">
               <Row>
-                <Col xs={12} lg={5} className="ps-1 border border-0 border-end pe-0">
+                <Col xs={12} lg={5} className="ps-1 border border-0 border-end pe-0" style={{ height: "90vh" }}>
                   <div className=" d-flex justify-content-between border-0 border-bottom pt-1">
                     <Card.Title className="bg-transparent p-0 m-0 ps-2" style={{ fontWeight: "600" }}>
                       <p className="p-0 m-0 mt-2 custom-text fs-6 ms-2 ">Messaggistica</p>
@@ -113,6 +113,22 @@ const MessaggisticaComponent = () => {
                       </Button>
                     </div>
                   </div>
+
+                  <InputGroup className="p-2">
+                    <InputGroup.Text className="border-0" style={{ backgroundColor: "#EDF3F7" }}>
+                      <Search style={{ backgroundColor: "#EDF3F7" }} />
+                    </InputGroup.Text>
+                    <FormControl
+                      placeholder="Cerca messaggi"
+                      aria-label="Cerca"
+                      aria-describedby="basic-addon1"
+                      className="border-0"
+                      style={{ backgroundColor: "#EDF3F7" }}
+                    />
+                    <InputGroup.Text className="border-0" style={{ backgroundColor: "#EDF3F7" }}>
+                      <SortDown style={{ backgroundColor: "#EDF3F7" }} />
+                    </InputGroup.Text>
+                  </InputGroup>
 
                   <ListGroup className="border-0 rounded-0">
                     {users.map((user) => (
@@ -162,6 +178,19 @@ const MessaggisticaComponent = () => {
                   ) : (
                     <p className="mt-4 lead p-5 text-center">Seleziona un utente per visualizzare i messaggi.</p>
                   )}
+                  <Col xs={12}>
+                    <InputGroup className="mt-2" style={{ borderTop: "1px solid #EDF3F7" }}>
+                      <FormControl
+                        as="textarea"
+                        placeholder="Scrivi un messaggio..."
+                        style={{ resize: "none" }} // Impedisce all'utente di ridimensionare il campo di testo
+                      />
+                      <Button variant="outline-secondary">
+                        <i className="fas fa-paper-plane"></i>{" "}
+                        {/* Icona di invio messaggio, assicurati di avere l'icona corretta o sostituiscila */}
+                      </Button>
+                    </InputGroup>
+                  </Col>
                 </Col>
               </Row>
             </Card.Body>
