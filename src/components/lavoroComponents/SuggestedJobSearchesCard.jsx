@@ -12,7 +12,7 @@ const SuggestedJobSearchesCard = () => {
 	return (
 		<>
 			{isCardVisible && (
-				<Card className="p-3 my-3">
+				<Card className="p-3 mb-3">
 					<Button
 						variant="link"
 						className="position-absolute top-0 end-0 text-secondary me-2 mt-2"
