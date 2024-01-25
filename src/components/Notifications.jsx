@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Badge, Dropdown, Toast } from "react-bootstrap";
 import { FaBell } from "react-icons/fa";
-import "/Users/egidio/Desktop/4_Settimana_Build Week/bw-linkedin/src/assets/style/notifications.css";
+import "../assets/style/notifications.css";
 import { TbPointFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
