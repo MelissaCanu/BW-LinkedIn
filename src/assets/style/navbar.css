@@ -30,6 +30,15 @@
   z-index: 10000;
 }
 
+.offcanvas-search {
+  width: 25%;
+  margin-left: 100px;
+  border-radius: 2%;
+  position: fixed;
+  z-index: 10001;
+  transition-property: none;
+}
+
 .margin-custom {
   margin-left: auto !important;
 }
