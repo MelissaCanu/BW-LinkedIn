@@ -26,21 +26,23 @@ const SuggestedJobSearchesCard = () => {
 
 					<div className="mt-3">
 						{[
-							"Marketing Manager",
-							"HR",
-							"Legal",
-							"Sales",
-							"Amazon",
-							"Google",
-							"Analyst",
+							{ label: "Developer", searchParam: "category=writing&limit=10" },
+							{ label: "Data", searchParam: "category=writing&limit=10" },
+							{ label: "Product", searchParam: "category=writing&limit=10" },
+							{
+								label: "Software Development",
+								searchParam: "category=writing&limit=10",
+							},
+							{ label: "DevOps", searchParam: "company=devops" },
+							{ label: "Wurl", searchParam: "company=wurl" },
 						].map((job, index) => (
-							<Card.Link key={index} href="#">
+							<Card.Link key={index} href={`/job/${job.searchParam}`}>
 								<Button
 									variant="outline-primary"
 									className="rounded-5 px-3 mt-2 border-2 fw-bolder custom-button-2"
 								>
 									<Search className="text-secondary me-2 fs-4" />
-									{job}
+									{job.label}
 								</Button>
 							</Card.Link>
 						))}
