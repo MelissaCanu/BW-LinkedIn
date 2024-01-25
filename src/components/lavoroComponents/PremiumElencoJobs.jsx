@@ -1,17 +1,30 @@
-import React from "react";
-import { Card, Container, Row, Col, Image, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import { fetchProfile } from "../../redux/actions/profileAction";
 
 const PremiumElencoJobs = () => {
+	const dispatch = useDispatch();
+	const { profile } = useSelector((state) => state.profile);
+	useEffect(() => {
+		dispatch(fetchProfile());
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	// const token =
+	// 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8"; // Replace with your actual token
+
 	return (
 		<Card className="mt-2">
 			<Card.Body className="pb-0">
 				<Row>
 					<Col xs={12} md={3} className="text-center">
 						<Image
-							src="https://media.licdn.com/dms/image/C5603AQF7fSW0xdUrPA/profile-displayphoto-shrink_100_100/0/1619100664221?e=1711584000&amp;v=beta&amp;t=smDz989uYgop7tAAmVMN0pwxw4XMGbBC0t3WiWF8oMI"
-							alt=""
+							src={profile.image}
 							roundedCircle
 							className="ivm-view-attr__img--centered EntityPhoto-circle-4 evi-image mt-2"
+							style={{ width: "80px", height: "80px" }}
 						/>
 					</Col>
 					<Col xs={12} md={9}>

@@ -7,6 +7,7 @@ import SuggestedJobSearchesCard from "./SuggestedJobSearchesCard";
 import JobCard from "../lavoroComponents/JobCard";
 import PremiumElencoJobs from "./PremiumElencoJobs";
 import JobCardCategory from "./JobCardCategory";
+import JobCardOther from "./JobCardOther";
 
 const Lavoro = () => {
 	const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Lavoro = () => {
 					<JobCard />
 					<PremiumElencoJobs />
 					<JobCardCategory category="full-stack" />
+					<JobCardOther />
 				</Col>
 			</Row>
 		</Container>
