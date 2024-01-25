@@ -10,7 +10,8 @@ const JobSpecifics = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const apiUrl = `https://strive-benchmark.herokuapp.com/api/jobs?${categoryOrCompany}`;
-			const token = "YOUR_ACCESS_TOKEN"; // Replace with your actual access token
+			const token =
+				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8";
 
 			try {
 				const response = await fetch(apiUrl, {
