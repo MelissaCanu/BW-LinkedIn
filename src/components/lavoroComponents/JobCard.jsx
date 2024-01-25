@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Card, Image, Button } from "react-bootstrap";
 import { X, Bookmark } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
-import { addSavedJob } from "../../redux/actions/jobActions";
+import { addBookmark } from "../../redux/actions/jobActions";
 
 const JobCard = ({ handleBookmarkJob }) => {
 	const [recommendedJobs, setRecommendedJobs] = useState([]);
@@ -17,12 +17,11 @@ const JobCard = ({ handleBookmarkJob }) => {
 					{
 						headers: {
 							Authorization:
-								"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYwOTcwMTIsImV4cCI6MTcwNzMwNjYxMn0.heVRrbkWUHSUOP56ezHOj_yJ3IHL3E0-b3pccVJTWbA", // token
+								"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8",
 						},
 					}
 				);
 				const data = await response.json();
-				// Filter and render only jobs with company logos
 				const jobsWithLogo = data.data.filter(
 					(job) => job.company_logo_url && job.company_logo_url.trim() !== ""
 				);
@@ -43,9 +42,8 @@ const JobCard = ({ handleBookmarkJob }) => {
 
 	const handleBookmarkJobInternal = (jobId) => {
 		console.log("Bookmark clicked:", jobId);
-		dispatch(addSavedJob(jobId));
+		dispatch(addBookmark(jobId));
 		console.log(`Bookmark job with ID: ${jobId}`);
-		// Call the handleBookmarkJob function from Lavoro component
 		handleBookmarkJob(jobId);
 	};
 
@@ -75,7 +73,7 @@ const JobCard = ({ handleBookmarkJob }) => {
 							</Button>
 							<Bookmark
 								className="position-absolute top-0 start-0 text-secondary"
-								onClick={() => handleBookmarkJob(job._id)}
+								onClick={() => handleBookmarkJobInternal(job._id)}
 							/>
 							{job.company_logo_url && (
 								<Image
