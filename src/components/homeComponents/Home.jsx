@@ -105,7 +105,7 @@ const Home = () => {
   ) : (
     <Container className="my-3">
       <Row>
-        <Col md={5} className="d-none d-md-block">
+        <Col md={5} className="d-none d-md-block ps-0">
           <Card className="rounded-4 shadow-sm">
             <Card.Header className="d-flex flex-column align-items-center">
               <Card.Title>
@@ -114,15 +114,17 @@ const Home = () => {
               </Card.Title>
               <span className="mb-2">Full-Stack Developer</span>
             </Card.Header>
-            <Card.Body>
-              <Card.Text className="p-2">
+            <Card.Body className="p-3">
+              <Card.Text>
                 <span>Collegamenti</span>
                 <br />
                 <span>
                   <strong>Espandi la tua rete</strong>
                 </span>
               </Card.Text>
-              <Card.Text className="border-top p-2">
+            </Card.Body>
+            <Card.Body className="border-top p-3">
+              <Card.Text>
                 <span>Accedi a strumenti e informazioni in esclusiva</span>
                 <br />
                 <FaDiamond className="me-2" />
@@ -130,7 +132,9 @@ const Home = () => {
                   <strong>Una rete più smart? Prova Premium gratuitamente</strong>
                 </span>
               </Card.Text>
-              <Card.Text className="border-top p-2">
+            </Card.Body>
+            <Card.Body className="border-top p-3">
+              <Card.Text>
                 <FaBookmark className="me-2" />
                 <span>I miei elementi</span>
               </Card.Text>
@@ -167,9 +171,9 @@ const Home = () => {
                 <span>Hashtag seguiti</span>
               </Card.Text>
             </Card.Body>
-            <Card.Header className=" text-center p-3">
+            <Card.Text className="border-top text-center p-3">
               <h4>Scopri di Più</h4>
-            </Card.Header>
+            </Card.Text>
           </Card>
         </Col>
         <Col xs={12} md={7} className="">

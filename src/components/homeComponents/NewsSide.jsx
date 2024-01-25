@@ -28,7 +28,7 @@ const NewsSide = () => {
   console.log(news);
   return (
     <>
-      <Row className="d-none d-lg-block me-5 mt-3">
+      <Row className="d-none d-lg-block mt-3">
         <Card className="mb-2">
           <div className="mt-3 d-flex justify-content-between">
             <h2>LinkedIn Notizie</h2>
