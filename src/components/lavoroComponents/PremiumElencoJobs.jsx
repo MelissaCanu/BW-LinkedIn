@@ -1,21 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../../redux/actions/userActions";
 import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import { fetchProfile } from "../../redux/actions/profileAction";
 
 const PremiumElencoJobs = () => {
 	const dispatch = useDispatch();
-	const userProfile = useSelector((state) => state.user.profile);
-	const userId = userProfile?._id;
-
-	const token =
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8"; // Replace with your actual token
-
+	const { profile } = useSelector((state) => state.profile);
 	useEffect(() => {
-		if (userId) {
-			dispatch(fetchUserProfile(userId, token));
-		}
-	}, [dispatch, userId, token]);
+		dispatch(fetchProfile());
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	// const token =
+	// 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8"; // Replace with your actual token
 
 	return (
 		<Card className="mt-2">
@@ -23,10 +21,10 @@ const PremiumElencoJobs = () => {
 				<Row>
 					<Col xs={12} md={3} className="text-center">
 						<Image
-							src=""
-							alt=""
+							src={profile.image}
 							roundedCircle
 							className="ivm-view-attr__img--centered EntityPhoto-circle-4 evi-image mt-2"
+							style={{ width: "80px", height: "80px" }}
 						/>
 					</Col>
 					<Col xs={12} md={9}>
