@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Card, Image, Button } from "react-bootstrap";
+import { X } from "react-bootstrap-icons";
 
 const JobCardCategory = ({ category }) => {
 	const [categoryJobs, setCategoryJobs] = useState([]);
@@ -63,7 +64,7 @@ const JobCardCategory = ({ category }) => {
 									className="position-absolute top-0 end-0 text-secondary"
 									onClick={() => handleHideJob(job._id)}
 								>
-									X
+									<X className="fs-4" />
 								</Button>
 								<Image
 									src={job.company_logo_url}
