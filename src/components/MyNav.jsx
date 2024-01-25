@@ -16,13 +16,10 @@ import { IoSearchSharp, IoHomeSharp, IoNotifications } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
 import { FaUserGroup, FaDiamond } from "react-icons/fa6";
 import { TiMessageTyping } from "react-icons/ti";
-import { MdAccountCircle } from "react-icons/md";
 import { BiSolidGrid } from "react-icons/bi";
 import "../assets/style/navbar.css";
 import { GoTriangleDown } from "react-icons/go";
-
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { GoVideo } from "react-icons/go";
 import { CgInsights } from "react-icons/cg";
 import { MdBusinessCenter } from "react-icons/md";
@@ -31,10 +28,17 @@ import { FaSafari } from "react-icons/fa";
 import { TiGroup } from "react-icons/ti";
 import { TiTick } from "react-icons/ti";
 import { NavLink, Link } from "react-router-dom";
+import { fetchProfile } from "../redux/actions/profileAction";
+import { useDispatch, useSelector } from "react-redux";
 
 function MyNav() {
   const [show, setShow] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const { profile } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, []);
 
   const handleToggle = (component) => {
     if (component === "search") {
@@ -96,14 +100,16 @@ function MyNav() {
           <Nav.Link to="/*" className=" py-1">
             <Dropdown>
               <Dropdown.Toggle className="custom-color border-0 py-0" variant="transparent" id="dropdown-basic">
-                <MdAccountCircle className="d-flex fs-4 mt-1" />
+                <img src={profile.image} className="d-flex mt-1 rounded-circle" width={20} height={20} />
                 <span className="d-none d-md-inline-flex nav-tab ">Tu</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#action6">
-                  <MdAccountCircle className="fs-1 m-3" />
-                  Epicode
+                  <img src={profile.image} className="m-2 rounded-circle" width={50} height={50} />
+                  <strong>
+                    {profile.name} {profile.surname}
+                  </strong>
                 </Dropdown.Item>
                 <div className="text-center">
                   <Link to="/profile">

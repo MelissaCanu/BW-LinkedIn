@@ -108,11 +108,13 @@ const Home = () => {
         <Col md={5} className="d-none d-md-block ps-0">
           <Card className="rounded-4 shadow-sm">
             <Card.Header className="d-flex flex-column align-items-center">
+              <img src={profile.image} alt="img-profile" className="rounded-circle my-5" width={100} />
               <Card.Title>
-                <img src="/*" alt="img-profile" className="rounded-5 my-5" />
-                <h4>Epicode</h4>
+                <h4>
+                  {profile.name} {profile.surname}
+                </h4>
               </Card.Title>
-              <span className="mb-2">Full-Stack Developer</span>
+              <span className="mb-2">{profile.title}</span>
             </Card.Header>
             <Card.Body className="p-3">
               <Card.Text>

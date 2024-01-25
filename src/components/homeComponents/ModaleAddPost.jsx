@@ -15,6 +15,15 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
   const dispatch = useDispatch();
   const [image, setImage] = useState();
 
+  const handleChange = (e) => {
+    const newText = e.target.value;
+
+    clearTimeout(handleChange.timeout);
+    handleChange.timeout = setTimeout(() => {
+      setPostText(newText);
+    }, 1500);
+  };
+
   const fetchNewPost = async () => {
     if (postText) {
       try {
@@ -138,9 +147,7 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
               cols="50"
               defaultValue={postText}
               placeholder="Inserisci il testo qui"
-              onChange={(e) => {
-                setPostText(e.target.value);
-              }}
+              onChange={handleChange}
             ></textarea>
             <div className="mt-3">
               {
