@@ -1,14 +1,29 @@
-import React from "react";
-import { Card, Container, Row, Col, Image, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from "../../redux/actions/userActions";
+import { Card, Row, Col, Image, Button } from "react-bootstrap";
 
 const PremiumElencoJobs = () => {
+	const dispatch = useDispatch();
+	const userProfile = useSelector((state) => state.user.profile);
+	const userId = userProfile?._id;
+
+	const token =
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8"; // Replace with your actual token
+
+	useEffect(() => {
+		if (userId) {
+			dispatch(fetchUserProfile(userId, token));
+		}
+	}, [dispatch, userId, token]);
+
 	return (
 		<Card className="mt-2">
 			<Card.Body className="pb-0">
 				<Row>
 					<Col xs={12} md={3} className="text-center">
 						<Image
-							src="https://media.licdn.com/dms/image/C5603AQF7fSW0xdUrPA/profile-displayphoto-shrink_100_100/0/1619100664221?e=1711584000&amp;v=beta&amp;t=smDz989uYgop7tAAmVMN0pwxw4XMGbBC0t3WiWF8oMI"
+							src=""
 							alt=""
 							roundedCircle
 							className="ivm-view-attr__img--centered EntityPhoto-circle-4 evi-image mt-2"
@@ -20,9 +35,7 @@ const PremiumElencoJobs = () => {
 							i migliori candidati
 						</Card.Title>
 						<div className="jobs-home-upsell-card__social-proof mt-2">
-							<div className="ivm-image-view-model jobs-home-upsell-card__facepile">
-								{/* Add your facepile images here */}
-							</div>
+							<div className="ivm-image-view-model jobs-home-upsell-card__facepile"></div>
 							<p className="text-body-xsmall">
 								Miriam e milioni di altri utenti usano Premium
 							</p>
