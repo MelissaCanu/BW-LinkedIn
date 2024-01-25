@@ -13,6 +13,7 @@ const initialState = {
 	loading: false,
 	error: null,
 	savedJobs: [],
+	bookmarks: [],
 };
 
 const jobReducer = (state = initialState, action) => {
