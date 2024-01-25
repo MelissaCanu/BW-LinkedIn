@@ -40,6 +40,10 @@ const JobSpecifics = () => {
 		fetchData();
 	}, [categoryOrCompany]);
 
+	const renderHTML = (htmlString) => {
+		return { __html: htmlString };
+	};
+
 	return (
 		<div>
 			<h2>Risultati della ricerca per "{categoryOrCompany}"</h2>
@@ -47,7 +51,9 @@ const JobSpecifics = () => {
 				<Card key={job._id}>
 					<Card.Body>
 						<Card.Title>{job.title}</Card.Title>
-						{/* Add other details of the job if necessary */}
+						<Card.Text>{job.job_type}</Card.Text>
+						<Card.Text>{job.publication_date}</Card.Text>
+						<div dangerouslySetInnerHTML={renderHTML(job.description)} />
 					</Card.Body>
 				</Card>
 			))}
