@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Badge, Dropdown, Toast } from "react-bootstrap";
-import { FaBell } from "react-icons/fa";
 import "../assets/style/notifications.css";
 import { TbPointFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import SidebarFooter from "./SidebarFooter";
+import Premium from "../premium.png";
 
 const Notifications = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -561,10 +561,28 @@ const Notifications = () => {
             </Card>
           </Link>
         </Col>
-        <Col lg={4} className="d-none d-lg-inline">
-          <Card>
-            <Card.Body>Pubblicità</Card.Body>
+        <Col md={4} className="d-none d-md-block">
+          <Card className="pb-2">
+            <Card.Body>
+              <Card.Text className="text-center lead" style={{ fontSize: "12px" }}>
+                Enjoy 50% off 2 months of Linkedin Premium!
+              </Card.Text>
+              <div className="d-flex justify-content-center">
+                <img src={Premium} alt="linkedin-premium" style={{ width: "60px" }} />
+              </div>
+              <Card.Text className="text-center lead mt-4 fs-6">Get a boost with this exclusive offer.</Card.Text>
+              <Card.Link href="#">
+                <div className="text-center">
+                  <Button variant="outline-primary" className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-2">
+                    Get 50% today
+                  </Button>
+                </div>
+              </Card.Link>
+            </Card.Body>
           </Card>
+          <Col xs={12}>
+            <SidebarFooter />
+          </Col>
         </Col>
       </Row>
     </Container>
