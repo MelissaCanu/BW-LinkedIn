@@ -6,7 +6,7 @@ import { removeBookmark } from "../../redux/actions/jobActions";
 
 const SavedJobs = () => {
 	const dispatch = useDispatch();
-	const savedJobs = useSelector((state) => state.bookmarks); // Adjusted to state.bookmarks
+	const savedJobs = useSelector((state) => state.bookmarks);
 
 	console.log("SavedJobs:", savedJobs);
 
@@ -15,7 +15,7 @@ const SavedJobs = () => {
 	}
 
 	const handleRemoveSavedJob = (jobId) => {
-		dispatch(removeBookmark(jobId)); // Adjusted to removeBookmark action
+		dispatch(removeBookmark(jobId));
 	};
 
 	return (
