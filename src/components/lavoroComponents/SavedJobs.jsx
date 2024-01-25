@@ -6,7 +6,7 @@ import { removeBookmark } from "../../redux/actions/jobActions";
 
 const SavedJobs = () => {
 	const dispatch = useDispatch();
-	const savedJobs = useSelector((state) => state.bookmarks); // Adjusted to state.bookmarks
+	const savedJobs = useSelector((state) => state.bookmarks);
 
 	console.log("SavedJobs:", savedJobs);
 
@@ -15,7 +15,7 @@ const SavedJobs = () => {
 	}
 
 	const handleRemoveSavedJob = (jobId) => {
-		dispatch(removeBookmark(jobId)); // Adjusted to removeBookmark action
+		dispatch(removeBookmark(jobId));
 	};
 
 	return (
@@ -31,7 +31,8 @@ const SavedJobs = () => {
 						>
 							<X className="fs-4" />
 						</Button>
-						{job.company_logo_url && (
+						<Card.Text>{job.jobId}</Card.Text>
+						{/* {job.company_logo_url && (
 							<Image
 								src={job.company_logo_url}
 								alt={`${job.company_name} logo`}
@@ -48,7 +49,7 @@ const SavedJobs = () => {
 								<p>{job.candidate_required_location}</p>
 							)}
 							{job.url && <a href={job.url}>Apply Now</a>}
-						</div>
+						</div> */}
 					</Card.Body>
 				</Card>
 			))}
