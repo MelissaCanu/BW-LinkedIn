@@ -7,6 +7,7 @@ import NewsSide from "./components/homeComponents/NewsSide";
 import { Container, Row, Col } from "react-bootstrap";
 import Lavoro from "./components/lavoroComponents/Lavoro";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MessaggisticaComponent from "./components/MessaggisticaComponent";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/network" element={<Rete />} />
           <Route path="/work" element={<Lavoro />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/messaggistica" element={<MessaggisticaComponent />} />
         </Routes>
       </div>
     </Router>
