@@ -30,11 +30,15 @@ import { GiTwirlCenter } from "react-icons/gi";
 import { FaSafari } from "react-icons/fa";
 import { TiGroup } from "react-icons/ti";
 import { TiTick } from "react-icons/ti";
-import { NavLink, Link } from "react-router-dom";
+import { IoLocationSharp } from "react-icons/io5";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 function MyNav() {
   const [show, setShow] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
+  const location = useLocation();
+  const isWorkPage = location.pathname === "/work";
 
   const handleToggle = (component) => {
     if (component === "search") {
@@ -58,13 +62,30 @@ function MyNav() {
 
               <Form.Control
                 type="search"
-                placeholder="Cerca"
+                placeholder={isWorkPage ? "Cerca per qualifica, competenza o azienda" : "Cerca"}
                 className="bg-transparent border-0 me-2"
                 aria-label="Cerca"
                 aria-describedby="search-icon"
               />
             </InputGroup>
           </Form>
+          {isWorkPage && (
+            <Form className="search d-none d-lg-flex rounded ms-2">
+              <InputGroup>
+                <InputGroup.Text id="search-icon" className="bg-transparent border-0">
+                  <IoLocationSharp className="fs-5 ms-2" />
+                </InputGroup.Text>
+
+                <Form.Control
+                  type="search"
+                  placeholder="Città, stato o CAP"
+                  className="bg-transparent border-0 me-2"
+                  aria-label="Cerca"
+                  aria-describedby="search-icon"
+                />
+              </InputGroup>
+            </Form>
+          )}
           <Button variant="transparent" className="d-flex d-lg-none flex-column align-items-center py-0">
             <IoSearchSharp className="fs-5" />
             <span className="d-none d-md-flex nav-tab">Cerca</span>
@@ -282,14 +303,21 @@ function MyNav() {
               </Offcanvas.Body>
             </Offcanvas>
           </Nav.Link>
-          <a href="/*" className="d-none d-xl-inline text-center premium">
-            Una rete più smart? <br />
-            Prova Premium <br />
-            gratuitamente
-          </a>
+          {isWorkPage ? null : (
+            <a href="/*" className="d-none d-xl-inline text-center premium">
+              Una rete più smart? <br />
+              Prova Premium <br />
+              gratuitamente
+            </a>
+          )}
           <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
             Prova Premium
           </a>
+          {isWorkPage && (
+            <a href="/*" className="text-center premium">
+              Prova Premium
+            </a>
+          )}
         </Nav>
       </Container>
     </Navbar>
