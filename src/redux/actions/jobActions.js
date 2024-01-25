@@ -5,6 +5,8 @@ import axios from "axios";
 export const FETCH_JOBS_REQUEST = "FETCH_JOBS_REQUEST";
 export const FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
 export const FETCH_JOBS_FAILURE = "FETCH_JOBS_FAILURE";
+export const ADD_SAVED_JOB = "ADD_SAVED_JOB";
+export const REMOVE_SAVED_JOB = "REMOVE_SAVED_JOB";
 
 // action creators per fetchare jobs
 export const fetchJobsRequest = () => ({
@@ -40,3 +42,13 @@ export const fetchJobs = (criteria, userId) => {
 		}
 	};
 };
+
+export const addSavedJob = (job) => ({
+	type: ADD_SAVED_JOB,
+	payload: job,
+});
+
+export const removeSavedJob = (jobId) => ({
+	type: REMOVE_SAVED_JOB,
+	payload: jobId,
+});

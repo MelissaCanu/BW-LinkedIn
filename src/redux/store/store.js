@@ -9,6 +9,7 @@ import newsReducer from "../reducers/newsReducer";
 import experienceReducer from "../reducers/experienceReducer";
 import imageReducer from "../reducers/imageReducer";
 import jobReducer from "../reducers/jobReducers";
+import bookmarksReducer from "../reducers/bookmarksReducer";
 
 const rootReducer = combineReducers({
 	currentUser: currentUserReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	experience: experienceReducer,
 	images: imageReducer,
 	jobs: jobReducer,
+	bookmarks: bookmarksReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

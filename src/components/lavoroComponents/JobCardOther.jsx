@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Card, Image, Button } from "react-bootstrap";
 import { X } from "react-bootstrap-icons";
+import { Bookmark } from "react-bootstrap-icons";
 
 const JobCardOther = () => {
 	const [recommendedJobs, setRecommendedJobs] = useState([]);
