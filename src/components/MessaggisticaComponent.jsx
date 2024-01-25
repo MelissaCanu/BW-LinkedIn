@@ -7,6 +7,7 @@ import Pietro from "../assets/imgChat/pietro.png";
 import GPT from "../assets/imgChat/chat.jpg";
 import Chiara from "../assets/imgChat/chiara.png";
 import EPICODE from "../assets/imgChat/epicode.jpg";
+import { ThreeDots, PencilSquare } from "react-bootstrap-icons";
 
 const MessaggisticaComponent = () => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -84,38 +85,66 @@ const MessaggisticaComponent = () => {
     setSelectedUser(userId);
   };
 
+  const getLastMessagePreview = (userId) => {
+    const lastMessage = messages[userId][messages[userId].length - 1];
+    return lastMessage.isOurMessage
+      ? `Tu: ${lastMessage.text}`
+      : `${users.find((u) => u.id === userId).name.split(" ")[0]}: ${lastMessage.text}`;
+  };
+
   return (
     <Container>
       <Row>
         <Col xs={12} md={8}>
           <Card className="mt-3" style={{ height: "90vh" }}>
-            <Card.Body className="ps-2">
+            <Card.Body className="ps-2 pt-0">
               <Row>
-                <Col sm={5} className="ps-1">
-                  <Card.Header className="bg-transparent pt-0 mt-0">Messaggistica</Card.Header>
+                <Col xs={12} lg={5} className="ps-1 border border-0 border-end pe-0">
+                  <div className=" d-flex justify-content-between border-0 border-bottom pt-1">
+                    <Card.Title className="bg-transparent p-0 m-0 ps-2" style={{ fontWeight: "600" }}>
+                      <p className="p-0 m-0 mt-2 custom-text fs-6 ms-2 ">Messaggistica</p>
+                    </Card.Title>
+                    <div className="mb-2">
+                      <Button className="rounded-circle border-0" variant="outline-secondary">
+                        <ThreeDots className="mb-1" />
+                      </Button>
+                      <Button className="rounded-circle ms-2 border-0" variant="outline-secondary">
+                        <PencilSquare className="mb-1" />
+                      </Button>
+                    </div>
+                  </div>
+
                   <ListGroup className="border-0 rounded-0">
                     {users.map((user) => (
                       <ListGroup.Item
                         key={user.id}
-                        className="border-0 border-bottom"
+                        className="border-0 border-bottom d-flex justify-content-between align-items-center"
                         active={selectedUser === user.id}
                         onClick={() => handleUserClick(user.id)}
                         action
                       >
-                        <img
-                          src={user.profileImage}
-                          alt={user.name}
-                          style={{ width: "60px", height: "60px", borderRadius: "50%", marginRight: "10px" }}
-                        />
-                        {user.name}
+                        <div className="d-flex align-items-center">
+                          <img
+                            src={user.profileImage}
+                            alt={user.name}
+                            style={{ width: "60px", height: "60px", borderRadius: "50%", marginRight: "10px" }}
+                          />
+                          <div className="mb-1">
+                            {user.name}
+
+                            <div className="text-muted text-truncate" style={{ maxWidth: "150px" }}>
+                              {getLastMessagePreview(user.id)}
+                            </div>
+                          </div>
+                        </div>
                       </ListGroup.Item>
                     ))}
                   </ListGroup>
                 </Col>
-                <Col sm={7}>
+                <Col xs={12} lg={7}>
                   {selectedUser && messages[selectedUser] ? (
                     <div>
-                      <h5>Chat con {users.find((u) => u.id === selectedUser)?.name}</h5>
+                      <h5 className="mt-2">Chat con {users.find((u) => u.id === selectedUser)?.name}</h5>
                       <div>
                         {messages[selectedUser].map((message, index) => (
                           <div
@@ -131,14 +160,16 @@ const MessaggisticaComponent = () => {
                       </div>
                     </div>
                   ) : (
-                    <p>Seleziona un utente per visualizzare i messaggi.</p>
+                    <p className="mt-4 lead p-5 text-center">Seleziona un utente per visualizzare i messaggi.</p>
                   )}
                 </Col>
               </Row>
             </Card.Body>
           </Card>
         </Col>
+
         {/*  */}
+
         <Col md={4} className="d-none d-md-block">
           <Card className="pb-2 mt-3">
             <Card.Body>
