@@ -16,7 +16,7 @@ const NewsSide = () => {
 
   return (
     <>
-      <Row>
+      <Row className="d-none d-lg-block me-5">
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h2>LinkedIn Notizie</h2>
           <BsFillInfoSquareFill />

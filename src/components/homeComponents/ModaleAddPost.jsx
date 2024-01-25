@@ -115,7 +115,7 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
   return (
     profile && (
       <>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} style={{ marginTop: "8em" }}>
           <Modal.Header closeButton>
             <Image
               src={

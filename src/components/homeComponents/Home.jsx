@@ -105,7 +105,7 @@ const Home = () => {
   ) : (
     <Container className="my-3">
       <Row>
-        <Col md={2} lg={4} className="d-none d-md-block">
+        <Col md={5} className="d-none d-md-block">
           <Card className="rounded-4 shadow-sm">
             <Card.Header className="d-flex flex-column align-items-center">
               <Card.Title>
@@ -172,7 +172,7 @@ const Home = () => {
             </Card.Header>
           </Card>
         </Col>
-        <Col xs={12} md={10} lg={7}>
+        <Col xs={12} md={7} className="">
           <FormHome
             profile={profile}
             handleClose={handleClose}
