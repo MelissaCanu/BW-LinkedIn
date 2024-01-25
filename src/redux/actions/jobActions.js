@@ -52,3 +52,13 @@ export const removeSavedJob = (jobId) => ({
 	type: REMOVE_SAVED_JOB,
 	payload: jobId,
 });
+
+export const addBookmark = (jobId) => ({
+	type: "ADD_BOOKMARKED_JOB",
+	payload: jobId,
+});
+
+export const removeBookmark = (jobId) => ({
+	type: "REMOVE_BOOKMARKED_JOB",
+	payload: jobId,
+});
