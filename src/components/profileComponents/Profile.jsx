@@ -190,7 +190,7 @@ const Profile = () => {
               <Card className="pb-2">
                 <Card.Body>
                   <Card.Text className="text-center lead" style={{ fontSize: "12px" }}>
-                    {name}, enjnoy 50% off 2 months of Linkedin Premium!
+                    {name}, enjoy 50% off 2 months of Linkedin Premium!
                   </Card.Text>
                   <div className="d-flex">
                     <img src={image} alt="profile-pic" className="rounded-5 ms-auto me-3" style={{ width: "60px" }} />
@@ -256,7 +256,7 @@ const Profile = () => {
                     <b>
                       {name} {surname}
                     </b>{" "}
-                    ha pubblicato questo post ·
+                    non ha ancora pubblicato un post ·
                   </Card.Text>
                 </Card.Body>
                 <Card.Text className="text-center fs-6 fw-bolder text-secondary border-1 border-top py-2 custom-buttons">
