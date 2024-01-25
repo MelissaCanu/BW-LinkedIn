@@ -26,12 +26,15 @@ const SuggestedJobSearchesCard = () => {
 
 					<div className="mt-3">
 						{[
-							{ label: "Developer", searchParam: "category=writing&limit=10" },
-							{ label: "Data", searchParam: "category=writing&limit=10" },
-							{ label: "Product", searchParam: "category=writing&limit=10" },
+							{
+								label: "Design",
+								searchParam: "category=design&limit=10",
+							},
+							{ label: "Data", searchParam: "category=data&limit=10" },
+							{ label: "Product", searchParam: "category=product&limit=10" },
 							{
 								label: "Software Development",
-								searchParam: "category=writing&limit=10",
+								searchParam: "category=Software Development&limit=10",
 							},
 							{ label: "DevOps", searchParam: "company=devops" },
 							{ label: "Wurl", searchParam: "company=wurl" },
