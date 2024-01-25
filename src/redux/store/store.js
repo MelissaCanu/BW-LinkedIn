@@ -12,16 +12,16 @@ import jobReducer from "../reducers/jobReducers";
 import userReducer from "../reducers/userReducer";
 
 const rootReducer = combineReducers({
-	currentUser: currentUserReducer,
-	profile: profileReducer,
-	network: networkReducer,
-	friendList: friendListReducer,
-	post: postReducers,
-	news: newsReducer,
-	experience: experienceReducer,
-	images: imageReducer,
-	jobs: jobReducer,
-	user: userReducer,
+  currentUser: currentUserReducer,
+  profile: profileReducer,
+  network: networkReducer,
+  friendList: friendListReducer,
+  post: postReducers,
+  news: newsReducer,
+  experience: experienceReducer,
+  images: imageReducer,
+  jobs: jobReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
