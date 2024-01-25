@@ -10,6 +10,7 @@ import {
   Row,
   Col,
   InputGroup,
+  Badge,
 } from "react-bootstrap/";
 import { FaLinkedin } from "react-icons/fa";
 import { IoSearchSharp, IoHomeSharp, IoNotifications } from "react-icons/io5";
@@ -52,6 +53,12 @@ function MyNav() {
     }
   };
 
+  const [showCanvas, setShowCanvas] = useState(false);
+
+  const handleCanvasToggle = () => {
+    setShowCanvas(!showCanvas);
+  };
+
   return (
     <Navbar sticky="top" className="bg-white d-flex justify-content-center shadow-sm nopadding">
       <Container className="d-flex justify-content-center">
@@ -70,8 +77,16 @@ function MyNav() {
                 className="bg-transparent border-0 me-2"
                 aria-label="Cerca"
                 aria-describedby="search-icon"
+                onClick={handleCanvasToggle}
               />
             </InputGroup>
+            <Offcanvas className="offcanvas-search" show={showCanvas} onHide={handleCanvasToggle} placement="top">
+              {/* Contenuto del canvas */}
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Risultati ricerca:</Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>{/* Contenuto del Canvas */}</Offcanvas.Body>
+            </Offcanvas>
           </Form>
           {isWorkPage && (
             <Form className="search d-none d-lg-flex rounded ms-2">
@@ -86,8 +101,16 @@ function MyNav() {
                   className="bg-transparent border-0 me-2"
                   aria-label="Cerca"
                   aria-describedby="search-icon"
+                  onClick={handleCanvasToggle}
                 />
               </InputGroup>
+              <Offcanvas className="offcanvas-search" show={showCanvas} onHide={handleCanvasToggle} placement="top">
+                {/* Contenuto del canvas */}
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title>Risultati ricerca:</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>{/* Contenuto del Canvas */}</Offcanvas.Body>
+              </Offcanvas>
             </Form>
           )}
           <Button variant="transparent" className="d-flex d-lg-none flex-column align-items-center py-0">
@@ -113,8 +136,14 @@ function MyNav() {
             <TiMessageTyping className="fs-4 mt-1" />
             <span className="d-none d-md-flex nav-tab">Messaggistica</span>
           </NavLink>
-          <NavLink to="/notifiche" className="d-flex flex-column align-items-center py-1 nav-link">
+          <NavLink
+            to="/notifications"
+            className="d-flex flex-column align-items-center py-1 nav-link position-relative"
+          >
             <IoNotifications className="fs-4 mt-1" />
+            <Badge bg="danger" className="position-absolute top-0 start-50 translate rounded-5" style={{ zIndex: 1 }}>
+              10+
+            </Badge>
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
           </NavLink>
 
