@@ -41,8 +41,6 @@ const Profile = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState(null);
-
   const dispatch = useDispatch();
 
   const { profile } = useSelector((state) => state.profile);
@@ -72,7 +70,10 @@ const Profile = () => {
   console.log("Aggiornamento Rete:", network);
   const { name, surname, area, title, image, _id } = profile;
 
-  const handleFileChange = (event) => {
+  /*   const [selectedFile, setSelectedFile] = useState(null);
+   */
+
+  /*   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
@@ -82,7 +83,7 @@ const Profile = () => {
     } else {
       console.error("Invalid userID or no file selected");
     }
-  };
+  }; */
 
   return (
     <>

@@ -55,8 +55,6 @@ function MyNav() {
 
   const [showCanvas, setShowCanvas] = useState(false);
 
-  const userId = "65ae766c600be100183a86c7";
-
   const handleCanvasToggle = () => {
     setShowCanvas(!showCanvas);
   };
@@ -168,7 +166,7 @@ function MyNav() {
                   </strong>
                 </Dropdown.Item>
                 <div className="text-center">
-                  <Link to={`/profile/${userId}`}>
+                  <Link to={`/profile/me`}>
                     <Button variant="outline-primary" className="rounded-5 py-0 px-5">
                       Visualizza Profilo
                     </Button>
