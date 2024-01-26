@@ -166,7 +166,7 @@ function MyNav() {
                   </strong>
                 </Dropdown.Item>
                 <div className="text-center">
-                  <Link to="/profile">
+                  <Link to={`/profile/me`}>
                     <Button variant="outline-primary" className="rounded-5 py-0 px-5">
                       Visualizza Profilo
                     </Button>
