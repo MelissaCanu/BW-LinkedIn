@@ -174,23 +174,20 @@ const MessaggisticaComponent = () => {
                           </div>
                         ))}
                       </div>
+                      <Col xs={12}>
+                        <InputGroup className="mt-5" style={{ borderTop: "1px solid #EDF3F7" }}>
+                          <FormControl
+                            as="textarea"
+                            placeholder="Scrivi un messaggio..."
+                            className="border-0"
+                            style={{ backgroundColor: "#F4F2EE" }}
+                          />
+                        </InputGroup>
+                      </Col>
                     </div>
                   ) : (
                     <p className="mt-4 lead p-5 text-center">Seleziona un utente per visualizzare i messaggi.</p>
                   )}
-                  <Col xs={12}>
-                    <InputGroup className="mt-2" style={{ borderTop: "1px solid #EDF3F7" }}>
-                      <FormControl
-                        as="textarea"
-                        placeholder="Scrivi un messaggio..."
-                        style={{ resize: "none" }} // Impedisce all'utente di ridimensionare il campo di testo
-                      />
-                      <Button variant="outline-secondary">
-                        <i className="fas fa-paper-plane"></i>{" "}
-                        {/* Icona di invio messaggio, assicurati di avere l'icona corretta o sostituiscila */}
-                      </Button>
-                    </InputGroup>
-                  </Col>
                 </Col>
               </Row>
             </Card.Body>
