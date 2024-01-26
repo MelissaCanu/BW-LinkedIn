@@ -106,7 +106,7 @@ const Profile = () => {
       >
         <Container>
           <Navbar.Brand href="#home">
-            <Image src={dataToDisplay.image} roundedCircle style={{ width: "40px" }} />
+            <Image src={dataToDisplay.image} roundedCircle style={{ width: "40px", height: "40px" }} />
           </Navbar.Brand>
           <Nav className="me-auto">
             <div className="d-flex flex-column">

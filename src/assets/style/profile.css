@@ -64,7 +64,7 @@ body {
 }
 
 .secondary-navbar {
-  top: 61px;
+  top: 56px;
   z-index: 10;
   animation-fill-mode: forwards;
   display: block;
