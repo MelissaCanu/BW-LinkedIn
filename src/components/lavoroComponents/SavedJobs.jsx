@@ -3,6 +3,7 @@ import { Card, Button, Modal } from "react-bootstrap";
 import { X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeBookmark } from "../../redux/actions/jobActions";
+import axios from "axios";
 
 const SavedJobs = () => {
 	const dispatch = useDispatch();
@@ -41,8 +42,8 @@ const JobCard = ({ job, onRemove }) => {
 
 	const handleApplyNowClick = async () => {
 		try {
-			console.log("JobId to fetch details:", job._id);
-			const response = await fetchJobDetails(job._id);
+			console.log("JobId to fetch details:", job.jobId);
+			const response = await fetchJobDetails(job.jobId);
 			setJobDetails(response);
 			setShowJobDetailsModal(true);
 		} catch (error) {
@@ -52,7 +53,7 @@ const JobCard = ({ job, onRemove }) => {
 
 	const fetchJobDetails = async (jobId) => {
 		try {
-			const response = await fetch(
+			const response = await axios.get(
 				`https://strive-benchmark.herokuapp.com/api/jobs/${jobId}`,
 				{
 					headers: {
@@ -62,24 +63,16 @@ const JobCard = ({ job, onRemove }) => {
 				}
 			);
 
-			if (!response.ok) {
-				throw new Error(`Failed to fetch job details: ${response.status}`);
-			}
-
-			const data = await response.json();
-			console.log("Job Details API Response:", data);
-
-			if (data && data.data && data.data.length > 0) {
-				return data.data[0];
-			} else {
+			if (!response.data.data) {
 				throw new Error("Invalid job details format");
 			}
+
+			return response.data.data; // Return the job details directly
 		} catch (error) {
 			console.error(error.message);
 			throw new Error("Failed to fetch job details");
 		}
 	};
-
 	const handleCloseJobDetailsModal = () => {
 		setShowJobDetailsModal(false);
 	};

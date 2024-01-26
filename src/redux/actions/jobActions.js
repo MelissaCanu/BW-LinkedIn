@@ -55,31 +55,38 @@ export const removeSavedJob = (jobId) => ({
 export const addBookmark = (jobId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(
-				`https://strive-benchmark.herokuapp.com/api/jobs/${jobId}`,
-				{
-					headers: {
-						Authorization: "your-auth-token-here",
-					},
-				}
-			);
+			const jobDetails = await fetchJobDetails(jobId);
 
-			const jobToAdd = Array.isArray(response.data.data)
-				? response.data.data.find((job) => job._id === jobId)
-				: response.data.data;
-
-			if (jobToAdd && jobToAdd._id) {
-				dispatch({
-					type: ADD_BOOKMARKED_JOB,
-					payload: { jobId: jobToAdd._id, ...jobToAdd },
-				});
-			} else {
-				console.error("Invalid jobId in the fetched job details:", jobToAdd);
-			}
+			dispatch({
+				type: ADD_BOOKMARKED_JOB,
+				payload: { jobId, ...jobDetails }, // Store both jobId and jobDetails
+			});
 		} catch (error) {
 			console.error("Error fetching job details:", error);
 		}
 	};
+};
+
+export const fetchJobDetails = async (jobId) => {
+	try {
+		const response = await axios.get(
+			`https://strive-benchmark.herokuapp.com/api/jobs/${jobId}`,
+			{
+				headers: {
+					Authorization: "your-auth-token-here",
+				},
+			}
+		);
+
+		if (!response.data.data) {
+			throw new Error("Invalid job details format");
+		}
+
+		return response.data.data; // Return the job details directly
+	} catch (error) {
+		console.error(error.message);
+		throw new Error("Failed to fetch job details");
+	}
 };
 
 export const removeBookmark = (jobId) => ({
