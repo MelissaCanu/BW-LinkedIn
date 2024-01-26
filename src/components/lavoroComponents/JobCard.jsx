@@ -9,6 +9,7 @@ const JobCard = ({ handleBookmarkJob }) => {
 	const [visibleJobsCount, setVisibleJobsCount] = useState(3);
 	const dispatch = useDispatch();
 	const bookmarks = useSelector((state) => state.bookmarks);
+	console.log("Bookmarks:", bookmarks);
 
 	useEffect(() => {
 		const fetchRecommendedJobs = async () => {

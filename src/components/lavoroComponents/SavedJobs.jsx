@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeBookmark } from "../../redux/actions/jobActions";
@@ -31,25 +31,16 @@ const SavedJobs = () => {
 						>
 							<X className="fs-4" />
 						</Button>
-						<Card.Text>{job.jobId}</Card.Text>
-						{/* {job.company_logo_url && (
-							<Image
-								src={job.company_logo_url}
-								alt={`${job.company_name} logo`}
-								className="me-3"
-								style={{ width: "60px", height: "60px" }}
-							/>
+						<h5>{job.title}</h5>
+						{job.company_name && (
+							<p className="text-muted mb-1">{job.company_name}</p>
 						)}
-						<div>
-							{job.title && <h5>{job.title}</h5>}
-							{job.company_name && (
-								<p className="text-muted mb-1">{job.company_name}</p>
-							)}
-							{job.candidate_required_location && (
-								<p>{job.candidate_required_location}</p>
-							)}
-							{job.url && <a href={job.url}>Apply Now</a>}
-						</div> */}
+						{job.candidate_required_location && (
+							<p>{job.candidate_required_location}</p>
+						)}
+						<Button variant="primary" href={job.url} target="_blank">
+							Apply Now
+						</Button>
 					</Card.Body>
 				</Card>
 			))}
