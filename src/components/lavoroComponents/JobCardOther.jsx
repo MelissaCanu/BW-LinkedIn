@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Col, Card, Image, Button } from "react-bootstrap";
-import { X } from "react-bootstrap-icons";
-import { Bookmark } from "react-bootstrap-icons";
+import { X, Bookmark } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addBookmark, removeBookmark } from "../../redux/actions/jobActions";
 
 const JobCardOther = () => {
 	const [recommendedJobs, setRecommendedJobs] = useState([]);
 	const [visibleJobsCount, setVisibleJobsCount] = useState(3);
+	const dispatch = useDispatch();
+	const bookmarks = useSelector((state) => state.bookmarks);
 
 	useEffect(() => {
 		const fetchRecommendedJobs = async () => {
@@ -32,6 +35,14 @@ const JobCardOther = () => {
 
 		fetchRecommendedJobs();
 	}, []);
+
+	const handleBookmarkJob = (jobId) => {
+		if (bookmarks.find((bookmark) => bookmark.jobId === jobId)) {
+			dispatch(removeBookmark(jobId));
+		} else {
+			dispatch(addBookmark(jobId));
+		}
+	};
 
 	const handleHideJob = (jobId) => {
 		/* filtra job con jobId e aggiorna lo stato */
@@ -66,6 +77,14 @@ const JobCardOther = () => {
 								>
 									<X className="fs-4" />
 								</Button>
+								<Bookmark
+									className={`position-absolute top-0 start-0 text-secondary ${
+										bookmarks.find((bookmark) => bookmark.jobId === job._id)
+											? "text-danger" // Apply the text-danger class if the job is bookmarked
+											: ""
+									}`}
+									onClick={() => handleBookmarkJob(job._id)}
+								/>
 								<Image
 									src={job.company_logo_url}
 									alt={`${job.company_name} logo`}
