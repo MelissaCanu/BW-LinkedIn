@@ -57,7 +57,7 @@ const NewsSide = () => {
             Show More <ArrowDownShort className="mb-1 fs-4" />
           </Button>
         </Card>
-        <Card className="pb-2" style={{ position: "sticky", top: 65, zIndex: 1 }}>
+        <Card className="pb-2">
           <Card.Body>
             <Card.Text className="text-center lead" style={{ fontSize: "12px" }}>
               Enjoy 50% off 2 months of Linkedin Premium!
@@ -76,7 +76,7 @@ const NewsSide = () => {
           </Card.Body>
         </Card>
         <div>
-          <SidebarFooter style={{ position: "sticky", top: 100, zIndex: 2 }} />
+          <SidebarFooter />
         </div>
       </Row>
     </>
