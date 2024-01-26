@@ -165,8 +165,8 @@ const Home = () => {
               </Card.Text>
               <Card.Text className="d-flex align-items-center justify-content-between text-primary p-1">
                 <span className="me-auto">Eventi</span>
-                <Button variant="outline-dark" className="fs-2 border-0 rounded-circle p-0">
-                  +
+                <Button variant="outline-secondary" className="fs-2 border-0 rounded-circle px-3 py-0">
+                  <p className="m-0 mb-1 p-0 ">+</p>
                 </Button>
               </Card.Text>
               <Card.Text className="text-primary p-1">
@@ -174,7 +174,7 @@ const Home = () => {
               </Card.Text>
             </Card.Body>
             <Card.Text className="border-top text-center p-3">
-              <h4>Scopri di Più</h4>
+              <h4 className="fs-6">Scopri di Più</h4>
             </Card.Text>
           </Card>
         </Col>
