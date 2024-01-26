@@ -140,40 +140,53 @@ const ModaleAddPost = ({ handleClose, show, profile, postText, setPostText, modi
           </Modal.Header>
           <Modal.Body className="d-flex flex-column">
             <textarea
-              className="mx-auto"
+              className="mx-auto border-0 rounded-2 p-4"
               id="textAreaModale"
               name="textAreaModale"
               rows="4"
               cols="50"
               defaultValue={postText}
               placeholder="Inserisci il testo qui"
+              style={{ backgroundColor: "#F4F2EE" }}
               onChange={handleChange}
             ></textarea>
-            <div className="mt-3">
+            <div className="mt-3 d-flex justify-content-between">
               {
-                <Button className="btn btn-light rounded-circle text-secondary" style={{ position: "relative" }}>
+                <Button variant="outline-light" className="border-0" style={{ position: "relative" }}>
                   <Dropzone>
                     {({ getRootProps, getInputProps, acceptedFiles }) => (
                       <>
                         <div {...getRootProps()}>
-                          <input {...getInputProps} id="dropZoneBtn" />
+                          <input
+                            {...getInputProps}
+                            id="dropZoneBtn"
+                            placeholder="Path/img..."
+                            className="border-0 rounded-2 p-1"
+                            style={{ backgroundColor: "#F4F2EE" }}
+                          />{" "}
+                          {image ? (
+                            <Check2 className="text-secondary ms-2" />
+                          ) : (
+                            <ImageFill className="text-secondary ms-2" />
+                          )}
                           {acceptedFiles[0] && setImage(acceptedFiles[0])}
                         </div>
                       </>
                     )}
                   </Dropzone>
-                  {image ? <Check2 /> : <ImageFill />}
                 </Button>
               }
-              <Button className="rounded-circle ms-2 text-secondary" variant="light">
-                <Calendar3 />
-              </Button>
-              <Button className="rounded-circle ms-2 text-secondary" variant="light">
-                <PatchPlusFill />
-              </Button>
-              <Button className="rounded-circle ms-2 text-secondary" variant="light">
-                <ThreeDots />
-              </Button>
+              <div className="me-3">
+                <Button className="rounded-circle ms-2 border-0" variant="outline-secondary">
+                  <Calendar3 />
+                </Button>
+                <Button className="rounded-circle ms-2  border-0" variant="outline-secondary">
+                  <PatchPlusFill />
+                </Button>
+                <Button className="rounded-circle ms-2 border-0" variant="outline-secondary">
+                  <ThreeDots />
+                </Button>
+              </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
