@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Col, Card, Image, Button } from "react-bootstrap";
 import { X, Bookmark } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
-import { addBookmark } from "../../redux/actions/jobActions";
+import { useDispatch, useSelector } from "react-redux";
+import { addBookmark, removeBookmark } from "../../redux/actions/jobActions";
 
 const JobCard = ({ handleBookmarkJob }) => {
 	const [recommendedJobs, setRecommendedJobs] = useState([]);
 	const [visibleJobsCount, setVisibleJobsCount] = useState(3);
 	const dispatch = useDispatch();
+	const bookmarks = useSelector((state) => state.bookmarks);
 
 	useEffect(() => {
 		const fetchRecommendedJobs = async () => {
@@ -41,12 +42,13 @@ const JobCard = ({ handleBookmarkJob }) => {
 	};
 
 	const handleBookmarkJobInternal = (jobId) => {
-		console.log("Bookmark clicked:", jobId);
-		dispatch(addBookmark(jobId));
-		console.log(`Bookmark job with ID: ${jobId}`);
+		if (bookmarks.find((bookmark) => bookmark.jobId === jobId)) {
+			dispatch(removeBookmark(jobId));
+		} else {
+			dispatch(addBookmark(jobId));
+		}
 		handleBookmarkJob(jobId);
 	};
-
 	const handleShowMoreJobs = () => {
 		setVisibleJobsCount((prevCount) => prevCount + 3);
 	};
@@ -72,7 +74,11 @@ const JobCard = ({ handleBookmarkJob }) => {
 								<X className="fs-4" />
 							</Button>
 							<Bookmark
-								className="position-absolute top-0 start-0 text-secondary"
+								className={`position-absolute top-0 start-0 text-secondary ${
+									bookmarks.find((bookmark) => bookmark.jobId === job._id)
+										? "text-danger"
+										: ""
+								}`}
 								onClick={() => handleBookmarkJobInternal(job._id)}
 							/>
 							{job.company_logo_url && (
