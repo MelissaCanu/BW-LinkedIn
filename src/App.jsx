@@ -22,10 +22,10 @@ function App() {
             element={
               <Container>
                 <Row>
-                  <Col className="col-md-12 col-lg-8">
+                  <Col className="col-md-12 col-lg-9">
                     <Home />
                   </Col>
-                  <Col className="d-none d-lg-block col-lg-4">
+                  <Col className="d-none d-lg-block col-lg-3">
                     <NewsSide />
                   </Col>
                 </Row>
