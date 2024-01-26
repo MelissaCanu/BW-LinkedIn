@@ -142,7 +142,7 @@ function MyNav() {
           >
             <IoNotifications className="fs-4 mt-1" />
             <Badge bg="danger" className="position-absolute top-0 start-50 translate rounded-5" style={{ zIndex: 1 }}>
-              10+
+              10
             </Badge>
             <span className="d-none d-md-flex nav-tab">Notifiche</span>
           </NavLink>
