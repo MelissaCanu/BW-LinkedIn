@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Button, Modal } from "react-bootstrap";
 import { X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeBookmark } from "../../redux/actions/jobActions";
@@ -7,8 +7,6 @@ import { removeBookmark } from "../../redux/actions/jobActions";
 const SavedJobs = () => {
 	const dispatch = useDispatch();
 	const savedJobs = useSelector((state) => state.bookmarks);
-
-	console.log("SavedJobs:", savedJobs);
 
 	if (!savedJobs || savedJobs.length === 0) {
 		return <p>No saved jobs found.</p>;
@@ -20,31 +18,116 @@ const SavedJobs = () => {
 
 	return (
 		<div>
-			<h2>Le mie offerte di lavoro</h2>
-			{savedJobs.map((job) => (
-				<Card key={job.jobId} className="mb-3">
-					<Card.Body className="position-relative d-flex align-items-center">
-						<Button
-							variant="link"
-							className="position-absolute top-0 end-0 text-secondary"
-							onClick={() => handleRemoveSavedJob(job.jobId)}
-						>
-							<X className="fs-4" />
-						</Button>
-						<h5>{job.title}</h5>
-						{job.company_name && (
-							<p className="text-muted mb-1">{job.company_name}</p>
-						)}
-						{job.candidate_required_location && (
-							<p>{job.candidate_required_location}</p>
-						)}
-						<Button variant="primary" href={job.url} target="_blank">
-							Apply Now
-						</Button>
-					</Card.Body>
-				</Card>
+			<h2>My Saved Jobs</h2>
+			{savedJobs.map((savedJob) => (
+				<JobCard
+					key={savedJob.jobId}
+					job={savedJob}
+					onRemove={handleRemoveSavedJob}
+				/>
 			))}
 		</div>
+	);
+};
+
+const JobCard = ({ job, onRemove }) => {
+	const [jobDetails, setJobDetails] = useState(null);
+	const [showJobDetailsModal, setShowJobDetailsModal] = useState(false);
+	const dispatch = useDispatch();
+
+	const handleRemoveClick = () => {
+		onRemove(job.jobId);
+	};
+
+	const handleApplyNowClick = async () => {
+		try {
+			console.log("JobId to fetch details:", job._id);
+			const response = await fetchJobDetails(job._id);
+			setJobDetails(response);
+			setShowJobDetailsModal(true);
+		} catch (error) {
+			console.error("Error fetching job details:", error);
+		}
+	};
+
+	const fetchJobDetails = async (jobId) => {
+		try {
+			const response = await fetch(
+				`https://strive-benchmark.herokuapp.com/api/jobs/${jobId}`,
+				{
+					headers: {
+						Authorization:
+							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYxNzQ0ODcsImV4cCI6MTcwNzM4NDA4N30.D_oUWOkDru_J40ei7pOE0hADNvyYJtypzzIboLiccx8",
+					},
+				}
+			);
+
+			if (!response.ok) {
+				throw new Error(`Failed to fetch job details: ${response.status}`);
+			}
+
+			const data = await response.json();
+			console.log("Job Details API Response:", data);
+
+			if (data && data.data && data.data.length > 0) {
+				return data.data[0];
+			} else {
+				throw new Error("Invalid job details format");
+			}
+		} catch (error) {
+			console.error(error.message);
+			throw new Error("Failed to fetch job details");
+		}
+	};
+
+	const handleCloseJobDetailsModal = () => {
+		setShowJobDetailsModal(false);
+	};
+
+	return (
+		<Card className="mb-3">
+			<Card.Body className="d-flex align-items-center">
+				<div className="flex-grow-1">
+					<h5 className="mb-0">{job.jobId}</h5>
+				</div>
+				<Button
+					variant="primary"
+					size="sm"
+					className="me-2"
+					onClick={handleApplyNowClick}
+					disabled={jobDetails !== null}
+				>
+					Apply Now
+				</Button>
+				<Button
+					variant="link"
+					className="text-secondary"
+					onClick={handleRemoveClick}
+				>
+					<X className="fs-4" />
+				</Button>
+			</Card.Body>
+
+			{/* Job Details Modale */}
+			<Modal show={showJobDetailsModal} onHide={handleCloseJobDetailsModal}>
+				<Modal.Header closeButton>
+					<Modal.Title>Job Details</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					{jobDetails && (
+						<div>
+							<h5>{jobDetails.title}</h5>
+							<p>{jobDetails.company_name}</p>
+						</div>
+					)}
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleCloseJobDetailsModal}>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</Card>
 	);
 };
 
