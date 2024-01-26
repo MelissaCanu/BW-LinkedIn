@@ -13,6 +13,7 @@ import SuggestedComponent from "./SuggestedComponent";
 import AnalysesComponent from "./AnalysesComponent";
 import ResourceComponent from "./ResourceComponent";
 import ExperienceComponent from "./ExperienceComponent";
+import { Link } from "react-router-dom";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -335,20 +336,20 @@ const Profile = () => {
                           <Card.Text>{suggested.title}</Card.Text>
                         </div>
                       </div>
-                      <Card.Link href="#">
+                      <Link to={`/profile/${suggested._id}`} style={{ textDecoration: "none" }}>
                         <div
                           className={`text-center mb-3 mt-3 ${
-                            index !== displayedNetwork.length - 1 ? " pb-4 border-bottom" : "" // condizione se e' l'ultimo elemento non mette margin bottom
+                            index !== displayedNetwork.length - 1 ? " pb-4 border-bottom" : ""
                           }`}
                         >
                           <Button
                             variant="outline-secondary"
-                            className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-3 "
+                            className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-3"
                           >
                             Visualizza Profilo
                           </Button>
                         </div>
-                      </Card.Link>
+                      </Link>
                     </React.Fragment>
                   ))}
                 </Card.Body>
