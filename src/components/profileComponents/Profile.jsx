@@ -210,9 +210,14 @@ const Profile = () => {
                       src={dataToDisplay.image}
                       alt="profile-pic"
                       className="rounded-5 ms-auto me-3"
-                      style={{ width: "60px" }}
+                      style={{ width: "60px", height: "60px" }}
                     />
-                    <img src={Premium} alt="linkedin-premium" className=" me-auto" style={{ width: "60px" }} />
+                    <img
+                      src={Premium}
+                      alt="linkedin-premium"
+                      className=" me-auto"
+                      style={{ width: "60px", height: "60px" }}
+                    />
                   </div>
                   <Card.Text className="text-center lead mt-4 fs-6">Get a boost with this exclusive offer.</Card.Text>
                   <Card.Link href="#">
