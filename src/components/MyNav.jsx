@@ -342,17 +342,17 @@ function MyNav() {
               </Offcanvas.Body>
             </Offcanvas>
           </Nav.Link>
-          {isWorkPage
-            ? null
-            : (<a href="/*" className="d-none d-xl-inline text-center premium">
-                Una rete più smart? <br />
-                Prova Premium <br />
-                gratuitamente
-              </a>)(
-                <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
-                  Prova Premium
-                </a>
-              )}
+          {isWorkPage ? null : (
+            <a href="/*" className="d-none d-xl-inline text-center premium">
+              Una rete più smart? <br />
+              Prova Premium <br />
+              gratuitamente
+            </a>
+          )}
+          <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
+            Prova Premium
+          </a>
+
           {isWorkPage && (
             <a href="/*" className="d-none d-md-inline text-center premium">
               Prova Premium
