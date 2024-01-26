@@ -41,7 +41,14 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchProfile());
+    if (!userId || userId === "me") {
+      dispatch(fetchProfile());
+    } else {
+      dispatch(fetchUserProfileAsync(userId));
+    }
+  }, [userId, dispatch]);
+
+  useEffect(() => {
     dispatch(fetchNetwork());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,15 +58,10 @@ const Profile = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    let profileId = userId || "me";
-    dispatch(fetchUserProfileAsync(profileId));
-  }, [userId, dispatch]);
-
-  const profile = useSelector((state) => state.profile);
+  const { profile } = useSelector((state) => state.profile);
   const { network } = useSelector((state) => state.network);
   const userProfile = useSelector((state) => state.otherUserProfile.userProfile);
-  const dataToDisplay = userId && userId !== "me" ? userProfile : profile;
+  const dataToDisplay = userId && userId !== "me" && userProfile ? userProfile : profile;
 
   const { loading: profileLoading } = useSelector((state) => state.profile);
   const { loading: networkLoading } = useSelector((state) => state.network);
@@ -77,6 +79,7 @@ const Profile = () => {
 
   console.log("Aggiornamento Profilo:", profile);
   console.log("Aggiornamento Rete:", network);
+  console.log({ userId, profile, userProfile, dataToDisplay });
 
   /*   const [selectedFile, setSelectedFile] = useState(null);
    */
