@@ -89,7 +89,7 @@ function MyNav() {
             </Offcanvas>
           </Form>
           {isWorkPage && (
-            <Form className="search d-none d-lg-flex rounded ms-2">
+            <Form className="search d-none d-xl-flex rounded ms-2">
               <InputGroup>
                 <InputGroup.Text id="search-icon" className="bg-transparent border-0">
                   <IoLocationSharp className="fs-5 ms-2" />
@@ -342,18 +342,19 @@ function MyNav() {
               </Offcanvas.Body>
             </Offcanvas>
           </Nav.Link>
-          {isWorkPage ? null : (
-            <a href="/*" className="d-none d-xl-inline text-center premium">
-              Una rete più smart? <br />
-              Prova Premium <br />
-              gratuitamente
-            </a>
-          )}
-          <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
-            Prova Premium
-          </a>
+          {isWorkPage
+            ? null
+            : (<a href="/*" className="d-none d-xl-inline text-center premium">
+                Una rete più smart? <br />
+                Prova Premium <br />
+                gratuitamente
+              </a>)(
+                <a href="/*" className="d-none d-md-inline d-xl-none text-center premium">
+                  Prova Premium
+                </a>
+              )}
           {isWorkPage && (
-            <a href="/*" className="text-center premium">
+            <a href="/*" className="d-none d-md-inline text-center premium">
               Prova Premium
             </a>
           )}

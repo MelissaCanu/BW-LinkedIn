@@ -30,6 +30,7 @@ const JobSpecifics = () => {
         }
 
         const responseData = await response.json();
+        console.log(responseData);
 
         // Check if responseData.data is an array
         if (Array.isArray(responseData.data)) {
