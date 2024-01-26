@@ -1,3 +1,5 @@
+// /src/reducers/jobReducer.js
+
 import {
 	FETCH_JOBS_REQUEST,
 	FETCH_JOBS_SUCCESS,
