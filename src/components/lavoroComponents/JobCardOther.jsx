@@ -17,16 +17,14 @@ const JobCardOther = () => {
 					"https://strive-benchmark.herokuapp.com/api/jobs?company=&limit=50",
 					{
 						headers: {
-							Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYwOTcwMTIsImV4cCI6MTcwNzMwNjYxMn0.heVRrbkWUHSUOP56ezHOj_yJ3IHL3E0-b3pccVJTWbA`, // token
+							Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTc1ZjY4YzNkYWRhMDAwMThhNjlmOTgiLCJpYXQiOjE3MDYwOTcwMTIsImV4cCI6MTcwNzMwNjYxMn0.heVRrbkWUHSUOP56ezHOj_yJ3IHL3E0-b3pccVJTWbA`, // Replace with your token
 						},
 					}
 				);
 				const data = await response.json();
-				// filtra e rende solo job con logo aziendale
 				const jobsWithLogo = data.data.filter(
 					(job) => job.company_logo_url && job.company_logo_url.trim() !== ""
 				);
-				console.log(data);
 				setRecommendedJobs(jobsWithLogo);
 			} catch (error) {
 				console.error("Error fetching recommended jobs:", error);
@@ -36,7 +34,13 @@ const JobCardOther = () => {
 		fetchRecommendedJobs();
 	}, []);
 
-	const handleBookmarkJob = (jobId) => {
+	const handleHideJob = (jobId) => {
+		setRecommendedJobs((prevJobs) =>
+			prevJobs.filter((job) => job._id !== jobId)
+		);
+	};
+
+	const handleBookmarkJobInternal = (jobId) => {
 		if (bookmarks.find((bookmark) => bookmark.jobId === jobId)) {
 			dispatch(removeBookmark(jobId));
 		} else {
@@ -44,15 +48,7 @@ const JobCardOther = () => {
 		}
 	};
 
-	const handleHideJob = (jobId) => {
-		/* filtra job con jobId e aggiorna lo stato */
-		setRecommendedJobs((prevJobs) =>
-			prevJobs.filter((job) => job._id !== jobId)
-		);
-	};
-
 	const handleShowMoreJobs = () => {
-		// Show the next 3 jobs when "Mostra altro" is clicked
 		setVisibleJobsCount((prevCount) => prevCount + 3);
 	};
 
@@ -83,7 +79,7 @@ const JobCardOther = () => {
 											? "text-warning"
 											: ""
 									}`}
-									onClick={() => handleBookmarkJob(job._id)}
+									onClick={() => handleBookmarkJobInternal(job._id)}
 								/>
 								<Image
 									src={job.company_logo_url}
