@@ -76,7 +76,7 @@ const JobCard = ({ handleBookmarkJob }) => {
 							<Bookmark
 								className={`position-absolute top-0 start-0 text-secondary ${
 									bookmarks.find((bookmark) => bookmark.jobId === job._id)
-										? "text-danger"
+										? "text-warning"
 										: ""
 								}`}
 								onClick={() => handleBookmarkJobInternal(job._id)}
