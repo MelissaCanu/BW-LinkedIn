@@ -35,7 +35,8 @@ function App() {
           <Route path="/network" element={<Rete />} />
           <Route path="/work" element={<Lavoro />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/me" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/job/:categoryOrCompany" element={<JobSpecifics />} />
           <Route path="/messaggistica" element={<MessaggisticaComponent />} />
           <Route path="/saved-jobs" element={<SavedJobs />} />
