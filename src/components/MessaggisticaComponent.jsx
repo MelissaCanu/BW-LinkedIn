@@ -7,7 +7,18 @@ import Pietro from "../assets/imgChat/pietro.png";
 import GPT from "../assets/imgChat/chat.jpg";
 import Chiara from "../assets/imgChat/chiara.png";
 import EPICODE from "../assets/imgChat/epicode.jpg";
-import { ThreeDots, PencilSquare, Search, SortDown } from "react-bootstrap-icons";
+import {
+  ThreeDots,
+  PencilSquare,
+  Search,
+  SortDown,
+  CameraVideoFill,
+  StarFill,
+  CardImage,
+  EmojiSmile,
+  FiletypeGif,
+  Paperclip,
+} from "react-bootstrap-icons";
 
 const MessaggisticaComponent = () => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -160,7 +171,14 @@ const MessaggisticaComponent = () => {
                 <Col xs={12} lg={7}>
                   {selectedUser && messages[selectedUser] ? (
                     <div>
-                      <h5 className="mt-2">Chat con {users.find((u) => u.id === selectedUser)?.name}</h5>
+                      <div className="d-flex justify-content-between">
+                        <h5 className="my-2 fs-6">{users.find((u) => u.id === selectedUser)?.name}</h5>
+                        <div>
+                          <ThreeDots className="fs-4 me-3 mt-2 text-secondary" style={{ cursor: "pointer" }} />
+                          <CameraVideoFill className="fs-5 me-3 mt-2 text-secondary" style={{ cursor: "pointer" }} />
+                          <StarFill className="fs-5 mt-1 text-secondary" style={{ cursor: "pointer" }} />
+                        </div>
+                      </div>
                       <div>
                         {messages[selectedUser].map((message, index) => (
                           <div
@@ -175,14 +193,33 @@ const MessaggisticaComponent = () => {
                         ))}
                       </div>
                       <Col xs={12}>
-                        <InputGroup className="mt-5" style={{ borderTop: "1px solid #EDF3F7" }}>
-                          <FormControl
-                            as="textarea"
-                            placeholder="Scrivi un messaggio..."
-                            className="border-0"
-                            style={{ backgroundColor: "#F4F2EE" }}
-                          />
-                        </InputGroup>
+                        <div className="border-0 border-top">
+                          <InputGroup>
+                            <FormControl
+                              as="textarea"
+                              placeholder="Scrivi un messaggio..."
+                              className="border-0 mt-5 p-3"
+                              style={{ backgroundColor: "#F4F2EE", borderTop: "1px solid #EDF3F7" }}
+                            />
+                          </InputGroup>
+                        </div>
+                        <div className="d-flex justify-content-between border-0 border-top mt-3">
+                          <div className="mt-3">
+                            <CardImage className="fs-4 me-3" style={{ cursor: "pointer", color: "#5E5E5E" }} />
+                            <Paperclip className="fs-4 me-3" style={{ cursor: "pointer", color: "#5E5E5E" }} />
+                            <FiletypeGif className="fs-4 me-3" style={{ cursor: "pointer", color: "#5E5E5E" }} />
+                            <EmojiSmile
+                              className="text-secondary fs-4"
+                              style={{ cursor: "pointer", color: "#5E5E5E" }}
+                            />
+                          </div>
+                          <div className="mt-3">
+                            <Button variant="secondary" className="rounded-5 p-0 px-3" style={{ fontSize: "14px" }}>
+                              Invia
+                            </Button>
+                            <ThreeDots className="fs-4 ms-2" style={{ cursor: "pointer", color: "#5E5E5E" }} />
+                          </div>
+                        </div>
                       </Col>
                     </div>
                   ) : (
