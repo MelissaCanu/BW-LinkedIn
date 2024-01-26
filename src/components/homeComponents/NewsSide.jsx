@@ -7,6 +7,7 @@ import { Row, Card, Button } from "react-bootstrap";
 import "../../assets/style/sideNews.css";
 import { formatDistanceToNow } from "date-fns";
 import { ArrowDownShort } from "react-bootstrap-icons";
+import Premium from "../../premium.png";
 
 const NewsSide = () => {
   const { data: news } = useSelector((state) => state.news);
@@ -56,8 +57,26 @@ const NewsSide = () => {
             Show More <ArrowDownShort className="mb-1 fs-4" />
           </Button>
         </Card>
-        <div style={{ position: "sticky", top: "100px" }}>
-          <SidebarFooter />
+        <Card className="pb-2" style={{ position: "sticky", top: 65, zIndex: 1 }}>
+          <Card.Body>
+            <Card.Text className="text-center lead" style={{ fontSize: "12px" }}>
+              Enjoy 50% off 2 months of Linkedin Premium!
+            </Card.Text>
+            <div className="d-flex justify-content-center">
+              <img src={Premium} alt="linkedin-premium" style={{ width: "60px" }} />
+            </div>
+            <Card.Text className="text-center lead mt-4 fs-6">Get a boost with this exclusive offer.</Card.Text>
+            <Card.Link href="#">
+              <div className="text-center">
+                <Button variant="outline-primary" className="rounded-5 px-3 border-1 py-1 fw-bolder custom-button-2">
+                  Get 50% today
+                </Button>
+              </div>
+            </Card.Link>
+          </Card.Body>
+        </Card>
+        <div>
+          <SidebarFooter style={{ position: "sticky", top: 100, zIndex: 2 }} />
         </div>
       </Row>
     </>
