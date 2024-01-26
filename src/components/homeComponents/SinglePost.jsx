@@ -2,6 +2,7 @@ import { Col, Image, Row, Button } from "react-bootstrap";
 import { PlusLg, Trash, PencilFill, DashLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addFriendAction, deleteFriendAction } from "../../redux/actions/friendListAction";
+import { HandThumbsUp, ChatDots, ArrowRepeat, Send } from "react-bootstrap-icons";
 
 const SinglePost = ({
   elem,
@@ -52,10 +53,8 @@ const SinglePost = ({
             <Image
               src={elem ? elem.user.image : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
               alt="profileImg"
-              width="60px"
-              height="60px"
               roundedCircle
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", width: "60px", height: "60px" }}
             />
           </Col>
           <Col xs={6} className=" order-5 order-sm-0 p-0 ms-4">
@@ -131,6 +130,24 @@ const SinglePost = ({
           <p className="">{elem.text}</p>
           <Col xs={12}>
             <Image src={elem.image ? elem.image : ""} width="100%" className="rounded-4 shadow" />
+            <div>
+              <Button>
+                <HandThumbsUp />
+                Consiglia
+              </Button>
+              <Button>
+                <ChatDots />
+                Commenta
+              </Button>
+              <Button>
+                <ArrowRepeat />
+                Diffondi il post
+              </Button>
+              <Button>
+                <Send />
+                Invia
+              </Button>
+            </div>
           </Col>
         </Row>
       </div>
