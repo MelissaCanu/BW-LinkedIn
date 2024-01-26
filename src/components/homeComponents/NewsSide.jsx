@@ -40,11 +40,11 @@ const NewsSide = () => {
               <React.Fragment key={index}>
                 <Card.Body className="p-1 mb-2">
                   <Card.Title className="fs-6" style={{ cursor: "pointer" }}>
-                    <span className=" me-2 fs-5">•</span>
-                    {elem.title}
+                    <span className=" me-2 fs-2">•</span>
+                    {truncateText(elem.title, 32)}
                   </Card.Title>
                   <Card.Text className="mb-0 lead" style={{ fontSize: "14px" }}>
-                    {truncateText(elem.summary, 50)}
+                    {truncateText(elem.summary, 40)}
                   </Card.Text>
                   <div className="d-flex justify-content-between">
                     <span style={{ fontSize: "12px" }}>{formatDate(elem.published_at)}</span>
