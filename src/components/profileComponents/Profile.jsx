@@ -7,13 +7,14 @@ import Premium from "../../premium.png";
 import { Pencil, PersonFillAdd, PencilFill, PlusLg } from "react-bootstrap-icons";
 import { fetchProfile } from "../../redux/actions/profileAction";
 import { fetchNetwork } from "../../redux/actions/networkAction";
-import { uploadProfilePicture } from "../../redux/actions/imageAction";
+import { fetchUserProfileAsync } from "../../redux/actions/otherUserProfileActions";
+/* import { uploadProfilePicture } from "../../redux/actions/imageAction"; */
 import FooterProfile from "../FooterProfile";
 import SuggestedComponent from "./SuggestedComponent";
 import AnalysesComponent from "./AnalysesComponent";
 import ResourceComponent from "./ResourceComponent";
 import ExperienceComponent from "./ExperienceComponent";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const getRandomElements = (arr, count) => {
   let shuffled = [...arr];
@@ -27,6 +28,9 @@ const getRandomElements = (arr, count) => {
 const Profile = () => {
   const [navbarClass, setNavbarClass] = useState("slide-out");
 
+  const { userId } = useParams();
+  const dispatch = useDispatch();
+
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     if (currentScrollPos > 100) {
@@ -37,26 +41,31 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchProfile());
+    dispatch(fetchNetwork());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    let profileId = userId || "me";
+    dispatch(fetchUserProfileAsync(profileId));
+  }, [userId, dispatch]);
 
-  const { profile } = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile);
   const { network } = useSelector((state) => state.network);
+  const userProfile = useSelector((state) => state.otherUserProfile.userProfile);
+  const dataToDisplay = userId && userId !== "me" ? userProfile : profile;
 
   const { loading: profileLoading } = useSelector((state) => state.profile);
   const { loading: networkLoading } = useSelector((state) => state.network);
 
   const displayedNetwork = useMemo(() => getRandomElements(network, 5), [network]);
   const displayedNetwork2 = useMemo(() => getRandomElements(network, 5), [network]);
-
-  useEffect(() => {
-    dispatch(fetchProfile());
-    dispatch(fetchNetwork());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   if (profileLoading || networkLoading) {
     return (
@@ -68,7 +77,6 @@ const Profile = () => {
 
   console.log("Aggiornamento Profilo:", profile);
   console.log("Aggiornamento Rete:", network);
-  const { name, surname, area, title, image, _id } = profile;
 
   /*   const [selectedFile, setSelectedFile] = useState(null);
    */
@@ -95,15 +103,15 @@ const Profile = () => {
       >
         <Container>
           <Navbar.Brand href="#home">
-            <Image src={image} roundedCircle style={{ width: "40px" }} />
+            <Image src={dataToDisplay.image} roundedCircle style={{ width: "40px" }} />
           </Navbar.Brand>
           <Nav className="me-auto">
             <div className="d-flex flex-column">
               <span style={{ fontWeight: "600" }}>
-                {name} {surname}
+                {dataToDisplay.name} {dataToDisplay.surname}
               </span>
               <span className="lead" style={{ fontSize: "14px" }}>
-                {title}
+                {dataToDisplay.title}
               </span>
             </div>
           </Nav>
@@ -127,15 +135,15 @@ const Profile = () => {
             <Card className="profile-card">
               <Card.Img variant="top" src={ProfileBg} className="profile-background" />
 
-              <img src={image} className="profile-picture" alt="profile-pic" />
+              <img src={dataToDisplay.image} className="profile-picture" alt="profile-pic" />
 
               <Card.Body className="mt-5">
                 <Card.Title className="fs-4">
-                  {name} {surname}
+                  {dataToDisplay.name} {dataToDisplay.surname}
                 </Card.Title>
-                <Card.Text className="mb-1">{title}</Card.Text>
+                <Card.Text className="mb-1">{dataToDisplay.title}</Card.Text>
                 <Card.Text className="lead fs-6 mb-1">
-                  {area} ·{" "}
+                  {dataToDisplay.area} ·{" "}
                   <a className="text-primary fw-bold text-decoration-none custom-link" href="#">
                     Informazioni di contatto
                   </a>
@@ -183,7 +191,7 @@ const Profile = () => {
                   <Pencil className="text-secondary fs-6 mt-1" />
                 </div>
                 <Card.Text className="lead fs-6">
-                  www.linkedin.com/in/{name}-{surname}
+                  www.linkedin.com/in/{dataToDisplay.name}-{dataToDisplay.surname}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -192,10 +200,15 @@ const Profile = () => {
               <Card className="pb-2">
                 <Card.Body>
                   <Card.Text className="text-center lead" style={{ fontSize: "12px" }}>
-                    {name}, enjoy 50% off 2 months of Linkedin Premium!
+                    {dataToDisplay.name}, enjoy 50% off 2 months of Linkedin Premium!
                   </Card.Text>
                   <div className="d-flex">
-                    <img src={image} alt="profile-pic" className="rounded-5 ms-auto me-3" style={{ width: "60px" }} />
+                    <img
+                      src={dataToDisplay.image}
+                      alt="profile-pic"
+                      className="rounded-5 ms-auto me-3"
+                      style={{ width: "60px" }}
+                    />
                     <img src={Premium} alt="linkedin-premium" className=" me-auto" style={{ width: "60px" }} />
                   </div>
                   <Card.Text className="text-center lead mt-4 fs-6">Get a boost with this exclusive offer.</Card.Text>
@@ -256,7 +269,7 @@ const Profile = () => {
 
                   <Card.Text className="lead mt-4 mb-2" style={{ fontSize: "13px" }}>
                     <b>
-                      {name} {surname}
+                      {dataToDisplay.name} {dataToDisplay.surname}
                     </b>{" "}
                     non ha ancora pubblicato un post ·
                   </Card.Text>
@@ -268,7 +281,7 @@ const Profile = () => {
             </Col>
 
             <ExperienceComponent
-              userId={_id}
+              userId={dataToDisplay._id}
               token={
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlNzY2YzYwMGJlMTAwMTgzYTg2YzciLCJpYXQiOjE3MDU5MzIzOTYsImV4cCI6MTcwNzE0MTk5Nn0._lXDAp9GrSaRCbC4PwGaSAxnfN79__pJeNpk4ERaOD0"
               }
