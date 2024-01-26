@@ -47,7 +47,7 @@ const SinglePost = ({
   return (
     elem &&
     profile && (
-      <div className="border border-1 rounded-3 shadow-sm my-3 p-3 bg-light">
+      <div className="border border-1 rounded-3 shadow-sm my-3 p-3 pb-0 bg-light">
         <Row className=" justify-content-between mb-2">
           <Col xs={2} className="pe-0">
             <Image
@@ -130,10 +130,10 @@ const SinglePost = ({
           <p className="">{elem.text}</p>
           <Col xs={12}>
             <Image src={elem.image ? elem.image : ""} width="100%" className="rounded-4 shadow" />
-            <div className="mt-3">
-              <Row>
+            <div className="mt-4 border-0 border-top">
+              <Row className="mt-2">
                 <Col xs={3}>
-                  <Button>
+                  <Button variant="outline-secondary" className="border-0">
                     <HandThumbsUp />
                     <p className="p-0 m-0" style={{ fontSize: "14px" }}>
                       Consiglia
@@ -141,7 +141,7 @@ const SinglePost = ({
                   </Button>
                 </Col>
                 <Col xs={3}>
-                  <Button>
+                  <Button variant="outline-secondary" className="border-0">
                     <ChatDots />
                     <p className="p-0 m-0" style={{ fontSize: "14px" }}>
                       Commenta
@@ -149,7 +149,7 @@ const SinglePost = ({
                   </Button>
                 </Col>
                 <Col xs={3}>
-                  <Button>
+                  <Button variant="outline-secondary" className="border-0">
                     <ArrowRepeat />
                     <p className="p-0 m-0" style={{ fontSize: "14px" }}>
                       Diffondi il post
@@ -157,7 +157,7 @@ const SinglePost = ({
                   </Button>
                 </Col>
                 <Col xs={3}>
-                  <Button>
+                  <Button variant="outline-secondary" className="border-0">
                     <Send />
                     <p className="p-0 m-0" style={{ fontSize: "14px" }}>
                       Invia

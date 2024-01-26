@@ -46,6 +46,7 @@ const Profile = () => {
     } else {
       dispatch(fetchUserProfileAsync(userId));
     }
+    window.scrollTo(0, 0);
   }, [userId, dispatch]);
 
   useEffect(() => {
