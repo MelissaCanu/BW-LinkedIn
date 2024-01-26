@@ -7,6 +7,7 @@ import {
 	ListUl,
 	GearFill,
 } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const SidebarLavoro = () => {
 	return (
@@ -18,12 +19,12 @@ const SidebarLavoro = () => {
 							<BookmarkFill size={20} className="me-2" />
 						</Col>
 						<Col>
-							<a
-								href="#my-job-offers"
+							<Link
+								to="/saved-jobs"
 								className="text-muted text-decoration-none fw-bold"
 							>
 								Le mie offerte di lavoro
-							</a>
+							</Link>
 						</Col>
 					</Row>
 				</Container>

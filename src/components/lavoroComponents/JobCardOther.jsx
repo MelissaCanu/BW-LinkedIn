@@ -80,7 +80,7 @@ const JobCardOther = () => {
 								<Bookmark
 									className={`position-absolute top-0 start-0 text-secondary ${
 										bookmarks.find((bookmark) => bookmark.jobId === job._id)
-											? "text-warning" // Apply the text-danger class if the job is bookmarked
+											? "text-warning"
 											: ""
 									}`}
 									onClick={() => handleBookmarkJob(job._id)}
